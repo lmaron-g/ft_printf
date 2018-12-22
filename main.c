@@ -14,6 +14,6 @@
 
 int main()
 {
-	ft_printf("Hello, %d Pussy", 98);
+	ft_printf("Hello, %x Pussy\n", 2891);
 	return 0;
 }
