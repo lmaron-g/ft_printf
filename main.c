@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/includes/libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 int main()
 {
-	ft_printf("Hello, %x Pussy\n", 2891);
+	   printf("Hello, %f Pussy\n", 11.9);
+	ft_printf("Hello, %f Pussy\n", 11.9);
 	return 0;
 }
