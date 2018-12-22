@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/20 15:42:09 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/20 15:42:10 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void				*ft_memset(void *b, int c, size_t len)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	size_t			i;
+	unsigned char	*uc;
+
+	i = 0;
+	uc = (unsigned char*)b;
+	while (i < len)
+		uc[i++] = (unsigned char)c;
+	return (uc);
 }

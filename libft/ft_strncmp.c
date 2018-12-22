@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/21 20:43:03 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/21 20:43:05 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	if (n == 0 || n > n + 1)
+		return (0);
+	while (*s1 && ((unsigned char)*s1 == (unsigned char)*s2) && --n)
+	{
+		s1++;
+		s2++;
+	}
+	return (((unsigned char)*s1 - (unsigned char)*s2));
 }

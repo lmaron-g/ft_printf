@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/27 22:03:53 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/27 22:03:55 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	if (!lst || !f)
+		return ;
+	while (lst)
+	{
+		f(lst);
+		lst = lst->next;
+	}
 }

@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/20 17:11:46 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/20 17:11:48 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void		*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	char	*dest;
+	char	*sour;
+
+	if (n == 0 || dst == src)
+		return (dst);
+	dest = (char*)dst;
+	sour = (char*)src;
+	while (--n)
+		*dest++ = *sour++;
+	*dest = *sour;
+	return (dst);
 }

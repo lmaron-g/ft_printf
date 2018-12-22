@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/21 17:40:09 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/21 17:40:20 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strcat(char *dst, const char *src)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (dst[i] != '\0')
+		i++;
+	while (src[j] != '\0')
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

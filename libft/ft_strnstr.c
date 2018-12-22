@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/21 19:13:24 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/21 19:13:25 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdio.h>
 
-int main()
+char		*ft_strnstr(const char *str, const char *sub, size_t len)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	size_t	sub_l;
+
+	if (str == sub || *sub == '\0' || !(sub_l = ft_strlen(sub)))
+		return ((char*)(str));
+	while (*str && len-- >= sub_l)
+	{
+		if ((*str == *sub) && ft_strncmp(str, sub, sub_l) == 0)
+			return ((char*)str);
+		str++;
+	}
+	return (0);
 }

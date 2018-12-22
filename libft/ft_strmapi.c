@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/22 20:41:54 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/22 20:41:57 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	unsigned int	i;
+	char			*fresh;
+
+	i = 0;
+	fresh = 0;
+	if (s && f)
+		if ((fresh = ft_strnew(ft_strlen(s))))
+			while (s[i])
+			{
+				fresh[i] = f(i, (char)s[i]);
+				i++;
+			}
+	return (fresh);
 }

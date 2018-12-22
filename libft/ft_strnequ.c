@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/22 21:15:46 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/22 21:15:54 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	if (n > n + 1)
+		return (0);
+	if (s1 && s2)
+		if (!ft_strncmp(s1, s2, n))
+			return (1);
+	return (0);
 }

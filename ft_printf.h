@@ -8,7 +8,9 @@ typedef struct	s_flag
 	int 		precision;
 	int 		parameter;
 	int 		length;
-	int 		type;
-}
+	char 		type;
+}				t_flag;
+
+void			ft_printf(char *src, ...);
 
 #endif

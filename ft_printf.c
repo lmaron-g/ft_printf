@@ -10,18 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/includes/libft.h"
 #include <stdarg.h>
+#include <unistd.h>
+#include "ft_printf.h"
 
-void find_flag(char *src)
+void use_flag(t_flag flag, va_list ap)
 {
-	int	i;
-
-	i = 0;
-	// while (src[i])
-	// ;
+	if (flag.type == 'd')
+		ft_putnbr(va_arg(ap, int));
+	if (flag.type == 'c')
+		ft_putchar(va_arg(ap, int));
+	if (flag.type == 's')
+		ft_putstr(va_arg(ap, char*));
 }
 
-void	ft_printf(const char *src, ...)
+int 		scan_flag(char *src, va_list ap)
+{
+	int		i;
+	t_flag	flag;
+
+	i = 0;
+	while (src[i] && !ft_isalpha(src[i]))
+	{
+		i++;
+	}
+	if (ft_isalpha(src[i]))
+	{
+		flag.type = src[i];
+		use_flag(flag, ap);
+		return (i + 1);
+	}
+	return (0);
+}
+
+void	ft_printf(char *src, ...)
 {
 	int	i;
 	va_list ap;
@@ -30,10 +53,10 @@ void	ft_printf(const char *src, ...)
 	va_start(ap, src);
 	while (src[i])
 	{
-		if (src[i] != '%')
-			find_flag(&src[i + 1]);
+		if (src[i] == '%')
+			i += scan_flag(&src[i + 1], ap);
 		else
-			write(1, &src[i], 1);
+			ft_putchar(src[i]);
 		i++;
 	}
 }

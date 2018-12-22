@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/22 12:54:42 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/22 12:54:45 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#define SIZE_T_MAX 65535
 
-int main()
+void		*ft_memalloc(size_t size)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	void	*area;
+
+	if (!(area = malloc(size)))
+		return (0);
+	if (size == SIZE_T_MAX)
+		size--;
+	ft_memset(area, 0, size);
+	return (area);
 }

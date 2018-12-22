@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/22 19:50:26 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/22 19:50:38 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void				ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	unsigned int	i;
+
+	i = 0;
+	if (s && f)
+		while (s[i])
+		{
+			f(i, &s[i]);
+			i++;
+		}
 }

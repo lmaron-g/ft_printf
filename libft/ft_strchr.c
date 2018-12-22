@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 22:07:25 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:07:27 by lmaron-g         ###   ########.fr       */
+/*   Created: 2018/11/21 17:40:55 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/11/21 17:40:57 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strchr(const char *str, int c)
 {
-	ft_printf("Hello, %d Pussy", 98);
-	return 0;
+	int	i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(str);
+	while (i <= len)
+	{
+		if (str[i] == (char)c)
+			return ((char*)(&str[i]));
+		i++;
+	}
+	return (0);
 }
