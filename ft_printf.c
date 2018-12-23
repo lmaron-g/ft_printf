@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft/includes/libft.h"
-#include <stdio.h>
-#include <unistd.h>
 #include "ft_printf.h"
 
 void use_specifier(t_specifier spec, va_list ap)
@@ -30,9 +28,9 @@ void use_specifier(t_specifier spec, va_list ap)
 	if (spec.type == 'f')
 		ft_putstr(ft_ftoa((float)va_arg(ap, double), 6));
 	if (spec.type == 'c')
-		ft_putchar(va_arg(ap, int));
+		print_specifier_c(spec, ap);
 	if (spec.type == 's')
-		ft_putstr(va_arg(ap, char*));
+		print_specifier_s(spec, ap);
 }
 
 int 		scan_specifier(char *src, va_list ap)
@@ -50,7 +48,7 @@ int 		scan_specifier(char *src, va_list ap)
 	spec.width = find_width(src, ap);
 	spec.length = find_lenght(src);
 	spec.precision = find_precision(src, ap);
-	// spec.parameter = find_parameter(src);
+	//spec.parameter = find_parameter(src);
 	while (src[i] && !is_type(src[i]))
 		i++;
 	if (!is_type(src[i]))      //todo: consider length-flags

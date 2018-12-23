@@ -1,6 +1,4 @@
 #include "libft/includes/libft.h"
-#include <stdio.h>
-#include <unistd.h>
 #include "ft_printf.h"
 
 char 		find_flag(char *src)

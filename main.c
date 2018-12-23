@@ -16,12 +16,7 @@
 
 int main()
 {
-	//printf("Hello, %.0d Pussy\n", 11);
-	printf("Decimal:\t%i %d %.6i %i %.0i %+i %i\n", 1, 2, 3, 0, 0, 4, -4);
- ft_printf("Decimal:\t%i %d %.6i %i %.0i %+i %i\n", 1, 2, 3, 0, 0, 4, -4);
-	// const char* s = "Hello";
-	// ft_printf("\t[%10s]\n\t[%-10s]\n\t[%*s]\n\t[%-10.*s]\n\t[%-*.*s]\n",
-	// 			s, s, 10, s, 4, s, 10, 4, s);
-
+	   printf("1234 - %-+10d - 5678\n", 32);
+	ft_printf("1234 - %-+10d - 5678\n", 32);
 	return 0;
 }
