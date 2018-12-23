@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft/includes/libft.h"
-#include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
 #include "ft_printf.h"
@@ -23,11 +22,11 @@ void use_specifier(t_specifier spec, va_list ap)
 	if (spec.type == 'u')
 		ft_putnbr(va_arg(ap, unsigned int));
 	if (spec.type == 'o')
-		ft_putstr(ft_itoa_base(va_arg(ap, unsigned), 8, 0));
+		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 8, 0));
 	if (spec.type == 'x')
-		ft_putstr(ft_itoa_base(va_arg(ap, unsigned), 16, 0));
+		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 16, 0));
 	if (spec.type == 'X')
-		ft_putstr(ft_itoa_base(va_arg(ap, unsigned), 16, 1));
+		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 16, 1));
 	if (spec.type == 'f')
 		ft_putstr(ft_ftoa((float)va_arg(ap, double), 6));
 	if (spec.type == 'c')
@@ -42,17 +41,23 @@ int 		scan_specifier(char *src, va_list ap)
 	t_specifier	spec;
 
 	i = 0;
-	while (src[i] && !ft_isalpha(src[i]))
+	if (src[i] == '%')
 	{
+		ft_putchar(src[i]);
+		return (1);
+	}
+	spec.flag = find_flag(src);
+	spec.width = find_width(src, ap);
+	spec.length = find_lenght(src);
+	spec.precision = find_precision(src, ap);
+	// spec.parameter = find_parameter(src);
+	while (src[i] && !is_type(src[i]))
 		i++;
-	}
-	if (ft_isalpha(src[i]))
-	{
-		spec.type = src[i];
-		use_specifier(spec, ap);
-		return (i + 1);
-	}
-	return (0);
+	if (!is_type(src[i]))      //todo: consider length-flags
+		return (0);
+	spec.type = src[i];
+	use_specifier(spec, ap);
+	return (i + 1);
 }
 
 void	ft_printf(char *src, ...)

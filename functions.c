@@ -1,9 +1,17 @@
 #include "ft_printf.h"
 #include "libft/includes/libft.h"
 
-int		is_specifier(char c)
+int		is_flag(char c)
 {
 	if (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0')
+		return (1);
+	return (0);
+}
+
+int		is_type(char c)
+{
+	if (c == 'd' || c == 'i' || c == 'u'|| c == 'o' || c == 'x' \
+		|| c == 'X' || c == 'f' || c == 'c'|| c == 's' || c == 'p' )
 		return (1);
 	return (0);
 }

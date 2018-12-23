@@ -16,7 +16,7 @@
 
 int main()
 {
-	   printf("Hello, %f Pussy\n", 11.9);
-	ft_printf("Hello, %f Pussy\n", 11.9);
+	//   printf("Hello, %f Pussy\n", 11.9);
+	ft_printf("Decimals: %d %%lld\n", 1977);
 	return 0;
 }
