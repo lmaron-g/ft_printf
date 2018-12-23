@@ -24,5 +24,6 @@ char 			find_flag(char *src);
 int 			find_width(char *src, va_list ap);
 int				find_lenght(char *src);
 int				find_precision(char *src, va_list ap);
+void			print_specifier_di(t_specifier spec, va_list ap);
 
 #endif
