@@ -1,20 +1,37 @@
 #include "libft/includes/libft.h"
 #include "ft_printf.h"
 
-char 		find_flag(char *src)
+void		find_flags(t_specifier *spec, char *src)
 {
-	if (is_flag(*src))
-		return (*src);
-	return (0);
-}
+	int		i;
 
+	i = 0;
+	spec->flag_m = 0;
+	spec->flag_p = 0;
+	spec->flag_s = 0;
+	spec->flag_z = 0;
+	while (is_flag(src[i]))
+	{
+		if (src[i] == '-')
+			spec->flag_m = 1;
+		if (src[i] == '+')
+			spec->flag_p = 1;
+		if (src[i] == ' ')
+			spec->flag_s = 1;
+		if (src[i] == '#')
+			spec->flag_h = 1;
+		if (src[i] == '0')
+			spec->flag_z = 1;
+		i++;
+	}
+}
 int 		find_width(char *src, va_list ap)
 {
 	int		i;
 	int		out;
 
 	i = 0;
-	if (is_flag(src[i]))
+	while (is_flag(src[i]))
 		i++;
 	if (src[i] == '*')
 		return (va_arg(ap, int));

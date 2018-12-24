@@ -16,7 +16,9 @@
 
 int main()
 {
-	   printf("1234 - %-+10d - 5678\n", 32);
-	ft_printf("1234 - %-+10d - 5678\n", 32);
+	unsigned int a = 32;
+
+	   printf("1234 - %d - 5678\n", a);
+	ft_printf("1234 - %d - 5678\n", a);
 	return 0;
 }

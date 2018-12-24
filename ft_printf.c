@@ -44,7 +44,7 @@ int 		scan_specifier(char *src, va_list ap)
 		ft_putchar(src[i]);
 		return (1);
 	}
-	spec.flag = find_flag(src);
+	find_flags(&spec, src);
 	spec.width = find_width(src, ap);
 	spec.length = find_lenght(src);
 	spec.precision = find_precision(src, ap);

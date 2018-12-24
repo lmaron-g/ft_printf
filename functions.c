@@ -1,29 +1,6 @@
 #include "ft_printf.h"
 #include "libft/includes/libft.h"
 
-int		is_flag(char c)
-{
-	if (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0')
-		return (1);
-	return (0);
-}
-
-int		is_type(char c)
-{
-	if (c == 'd' || c == 'i' || c == 'u'|| c == 'o' || c == 'x' \
-		|| c == 'X' || c == 'f' || c == 'c'|| c == 's' || c == 'p' )
-		return (1);
-	return (0);
-}
-
-int		ft_pow(int nb, int pow)
-{
-	if (pow == 0)
-		return (1);
-	else
-		return (nb * ft_pow(nb, pow - 1));
-}
-
 int					ft_cat_pro(char **dest, char *src)
 {
 	char			*ret;
