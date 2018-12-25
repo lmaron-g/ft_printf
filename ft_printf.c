@@ -16,7 +16,7 @@
 void use_specifier(t_specifier spec, va_list ap)
 {
 	if (spec.type == 'd' || spec.type == 'i')
-		print_specifier_di(spec, ap);
+		print_specifier_di(spec, use_lenght_for_di(spec, ap));
 	if (spec.type == 'u')
 		ft_putnbr(va_arg(ap, unsigned int));
 	if (spec.type == 'o')

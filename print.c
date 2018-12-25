@@ -1,15 +1,14 @@
 #include "libft/includes/libft.h"
 #include "ft_printf.h"
 
-void		print_specifier_di(t_specifier spec, va_list ap)
+void				print_specifier_di(t_specifier spec, long long int nbr)
 {
-	char	*src;
-	int		len;
-	int		nbr;
+	char			*src;
+	int				len;
 
 	len = 0;
-	nbr = va_arg(ap, int);
-	src = ft_itoa(nbr);
+
+	src = ft_itoa_ll(nbr);
 	if (spec.precision)
 		src[spec.precision] = '\0';
 	if (spec.flag_p || spec.flag_s)

@@ -16,9 +16,7 @@
 
 int main()
 {
-	unsigned int a = 32;
-
-	   printf("1234 - %d - 5678\n", a);
-	ft_printf("1234 - %d - 5678\n", a);
+	   printf("1234 - %f - 5678\n", 11.3);
+	ft_printf("1234 - %f - 5678\n", 11.9);
 	return 0;
 }

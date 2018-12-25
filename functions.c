@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 #include "libft/includes/libft.h"
+#include <stdio.h>
 
 int					ft_cat_pro(char **dest, char *src)
 {
@@ -22,6 +23,27 @@ int					ft_cat_pro(char **dest, char *src)
 	ft_strdel(dest);
 	*dest = ret;
 	return (1);
+}
+
+char		*ft_itoa_ll(long long int n)
+{
+	char		*str;
+
+	if (!(str = (char *)malloc(3)))
+		return (0);
+	if (n < 0)
+	{
+		str = ft_strjoin(ft_itoa_ll(-(n / 10)), ft_itoa_ll(-(n % 10)));
+		str = ft_strjoin("-", str);
+	}
+	else if (n >= 10)
+		str = ft_strjoin(ft_itoa_ll(n / 10), ft_itoa_ll(n % 10));
+	else if (n < 10 && n >= 0)
+	{
+		str[0] = n + '0';
+		str[1] = '\0';
+	}
+	return (str);
 }
 
 char		*ft_itoa_base(int dec, int base, int up)
@@ -50,6 +72,7 @@ char		*ft_itoa_base(int dec, int base, int up)
 		nbr[0] = '-';
 	return (nbr);
 }
+
 
 char			*ft_ftoa(float nbr, int afterpoint)
 {
