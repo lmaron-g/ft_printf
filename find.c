@@ -9,6 +9,7 @@ void		find_flags(t_specifier *spec, char *src)
 	spec->flag_m = 0;
 	spec->flag_p = 0;
 	spec->flag_s = 0;
+	spec->flag_h = 0;
 	spec->flag_z = 0;
 	while (is_flag(src[i]))
 	{

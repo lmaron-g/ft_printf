@@ -8,7 +8,6 @@ void				print_specifier_di(t_specifier spec, long long int nbr)
 	int				len;
 
 	len = 0;
-
 	src = ft_itoa_ll(nbr);
 	add_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
@@ -32,7 +31,6 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 	int				len;
 
 	len = 0;
-
 	src = ft_itoa_ull(nbr);
 	add_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
@@ -40,7 +38,7 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 	len = ft_strlen(src);
 	if (spec.flag_z && !spec.flag_m)
 		while (len++ < spec.width)
-							ft_putchar('0');
+			ft_putchar('0');
 	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -76,18 +74,27 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 
 void				print_specifier_p(t_specifier spec, va_list ap)
 {
-	void			*mem;
 	int 			len;
+	char			*s;
+	unsigned int	p;
 
-	len = 1;
-	mem = va_arg(ap, void*);
-	// if (!spec.flag_m && spec.width)
-	// 	while (len++ < spec.width)
-	// 		ft_putchar(' ');
-	// ft_putchar(c);
-	// if (spec.flag_m)
-	// 	while (len++ < spec.width)
-	// 		ft_putchar(' ');
+	len = 2 * sizeof(p);
+	s = (char*)malloc(len + 1);
+	p = (unsigned int)va_arg(ap, void*);
+	if (!spec.flag_m && spec.width)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+	len = 2 * sizeof(p);
+	while (len--)
+	{
+		s[len] = "0123456789abcdef"[p & 0x0F];
+		p >>= 4;
+	}
+	while (++len < 2 * sizeof(p))
+		ft_putchar(s[len]);
+	if (spec.flag_m)
+		while (len++ < spec.width)
+			ft_putchar(' ');
 }
 
 void				print_specifier_s(t_specifier spec, va_list ap)
@@ -127,6 +134,29 @@ void				print_specifier_c(t_specifier spec, va_list ap)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 	ft_putchar(c);
+	if (spec.flag_m)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+}
+
+void				print_specifier_x(t_specifier spec, unsigned long long nbr)
+{
+	char			*src;
+	int				len;
+
+	len = 0;
+	src = ft_itoa_base_ull(nbr, 16, spec.type);
+	if (spec.flag_h)
+		set_pref(&src, spec.type);
+	add_zero(&src, spec.precision);
+	len = ft_strlen(src);
+	if (spec.flag_z && !spec.flag_m)
+		while (len++ < spec.width)
+			ft_putchar('0');
+	if (!spec.flag_m)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+	ft_putstr(src);
 	if (spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');

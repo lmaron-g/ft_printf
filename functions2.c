@@ -16,7 +16,7 @@ int		is_type(char c)
 	return (0);
 }
 
-int		ft_pow(int nb, int pow)
+unsigned long long		ft_pow(int nb, int pow)
 {
 	if (pow == 0)
 		return (1);
@@ -39,4 +39,17 @@ void		set_plus(char **src, int space, int plus)
 		ft_strdel(src);
 		*src = new;
 	}
+}
+
+void		set_pref(char **src, char type)
+{
+	char	*new;
+
+	new = (char*)malloc(sizeof(char) * ft_strlen(*src) + 3);
+	new[0] = '0';
+	new[1] = type;
+	ft_strcpy(&new[2], *src);
+	ft_strdel(src);
+	*src = new;
+
 }

@@ -21,10 +21,8 @@ void use_specifier(t_specifier spec, va_list ap)
 		print_specifier_u(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'o')
 		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 8, 0));
-	if (spec.type == 'x')
-		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 16, 0));
-	if (spec.type == 'X')
-		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 16, 1));
+	if (spec.type == 'x' || spec.type == 'X')
+		print_specifier_x(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'f')
 		ft_putstr(ft_ftoa((float)va_arg(ap, double), 6));
 	if (spec.type == 'c')

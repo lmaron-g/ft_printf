@@ -2,7 +2,7 @@
 #include "libft/includes/libft.h"
 #include <stdio.h>
 
-int					ft_cat_pro(char **dest, char *src)
+int						ft_cat_pro(char **dest, char *src)
 {
 	char			*ret;
 	char			*fresh;
@@ -25,7 +25,7 @@ int					ft_cat_pro(char **dest, char *src)
 	return (1);
 }
 
-static int			ft_size(long long int nb)
+static int				ft_size(long long int nb)
 {
 	int		size;
 
@@ -43,7 +43,7 @@ static int			ft_size(long long int nb)
 	return (size);
 }
 
-static int			ft_size_u(unsigned long long nb)
+static int				ft_size_u(unsigned long long nb)
 {
 	int		size;
 
@@ -61,7 +61,7 @@ static int			ft_size_u(unsigned long long nb)
 	return (size);
 }
 
-void				add_zero(char **src, int precision)
+void					add_zero(char **src, int precision)
 {
 	int				i;
 	int				len;
@@ -93,7 +93,7 @@ void				add_zero(char **src, int precision)
 	}
 }
 
-char				*ft_itoa_ll(long long int nb)
+char					*ft_itoa_ll(long long int nb)
 {
 	char	*str;
 	long long int	nbr;
@@ -118,11 +118,11 @@ char				*ft_itoa_ll(long long int nb)
 	return (str);
 }
 
-char				*ft_itoa_ull(unsigned long long nb)
+char					*ft_itoa_ull(unsigned long long nb)
 {
-	char	*str;
-	unsigned long long nbr;
-	int		i;
+	char				*str;
+	unsigned long long	nbr;
+	int					i;
 
 	i = 0;
 	if (!(str = (char*)malloc(sizeof(char) * ft_size_u(nb) + 1)))
@@ -142,7 +142,7 @@ char				*ft_itoa_ull(unsigned long long nb)
 	return (str);
 }
 
-char				*ft_itoa_base(int dec, int base, int up)
+char					*ft_itoa_base(int dec, int base, int up)
 {
 	int		len;
 	char	*nbr;
@@ -169,7 +169,34 @@ char				*ft_itoa_base(int dec, int base, int up)
 	return (nbr);
 }
 
-char				*ft_ftoa(float nbr, int afterpoint)
+char					*ft_itoa_base_ull(unsigned long long dec, int base, char x)
+{
+	int					len;
+	char				*nbr;
+	int					neg;
+
+	neg = 0;
+	len = 1;
+	if (dec < 0)
+		dec *= -1;
+	while (ft_pow(base, len) - 1 < dec)
+		len++;
+	nbr = (char*)malloc(sizeof(char*) * len);
+	nbr[len + neg] = '\0';
+	while (len-- > 0)
+	{
+		if (x == 'x')
+			nbr[len + neg] = (dec % base) + (dec % base > 9 ? 'a' - 10 : '0');
+		else
+			nbr[len + neg] = (dec % base) + (dec % base > 9 ? 'A' - 10 : '0');
+		dec = dec / base;
+	}
+	if (neg)
+		nbr[0] = '-';
+	return (nbr);
+}
+
+char					*ft_ftoa(float nbr, int afterpoint)
 {
 	char		*fstr;
 	int			i_part;

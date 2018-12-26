@@ -16,9 +16,9 @@
 
 int main()
 {
-	int a = 12;
+	int a = 1472;
 
-	   printf("1234 - %p - 5678\n", &a);
-	ft_printf("1234 - %f - 5678\n", 11.3);
+	   printf("1234 - %#012X - 5678\n", a);
+	ft_printf("1234 - %#012X - 5678\n", a);
 	return 0;
 }
