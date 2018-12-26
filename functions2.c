@@ -24,25 +24,6 @@ int		ft_pow(int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-char		*ft_strrev(char *str)
-{
-	int		i;
-	int		l;
-	char	t;
-
-	l = 0;
-	while (str[l] != '\0')
-		l++;
-	i = -1;
-	while (++i < --l)
-	{
-		t = str[i];
-		str[i] = str[l];
-		str[l] = t;
-	}
-	return (str);
-}
-
 void		set_plus(char **src, int space, int plus)
 {
 	char	*new;

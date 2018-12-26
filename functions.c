@@ -25,28 +25,124 @@ int					ft_cat_pro(char **dest, char *src)
 	return (1);
 }
 
-char		*ft_itoa_ll(long long int n)
+static int			ft_size(long long int nb)
 {
-	char		*str;
+	int		size;
 
-	if (!(str = (char *)malloc(3)))
-		return (0);
-	if (n < 0)
+	size = 1;
+	if (nb < 0)
 	{
-		str = ft_strjoin(ft_itoa_ll(-(n / 10)), ft_itoa_ll(-(n % 10)));
-		str = ft_strjoin("-", str);
+		size++;
+		nb = -nb;
 	}
-	else if (n >= 10)
-		str = ft_strjoin(ft_itoa_ll(n / 10), ft_itoa_ll(n % 10));
-	else if (n < 10 && n >= 0)
+	while (nb >= 10)
 	{
-		str[0] = n + '0';
-		str[1] = '\0';
+		size++;
+		nb /= 10;
 	}
+	return (size);
+}
+
+static int			ft_size_u(unsigned long long nb)
+{
+	int		size;
+
+	size = 1;
+	if (nb < 0)
+	{
+		size++;
+		nb = -nb;
+	}
+	while (nb >= 10)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
+}
+
+void				add_zero(char **src, int precision)
+{
+	int				i;
+	int				len;
+	char			*new;
+
+	i = 0;
+	len = ft_strlen(*src);
+	if (precision && precision > len)
+	{
+		if (**src != '-')
+		{
+			new = (char*)malloc(sizeof(char) * precision + 1);
+			while (len++ < precision)
+				new[i++] = '0';
+			ft_strcpy(&new[i], *src);
+			ft_strdel(src);
+			*src = new;
+		}
+		else
+		{
+			new = (char*)malloc(sizeof(char) * precision + 2);
+			new[i++] = '-';
+			while (len++ < precision)
+				new[i++] = '0';
+			ft_strcpy(&new[i], *src  + 1);
+			ft_strdel(src);
+			*src = new;
+		}
+	}
+}
+
+char				*ft_itoa_ll(long long int nb)
+{
+	char	*str;
+	long long int	nbr;
+	int		i;
+
+	i = 0;
+
+	if (!(str = (char*)malloc(sizeof(char) * ft_size(nb) + 1)))
+		return (NULL);
+	if (nb < 0)
+		str[0] = '-';
+	nbr = nb;
+	if (nbr < 0)
+		nbr = -nbr;
+	str[ft_size(nb) - i++] = '\0';
+	while (nbr >= 10)
+	{
+		str[ft_size(nb) - i++] = (nbr % 10) + 48;
+		nbr /= 10;
+	}
+	str[ft_size(nb) - i++] = (nbr % 10) + 48;
 	return (str);
 }
 
-char		*ft_itoa_base(int dec, int base, int up)
+char				*ft_itoa_ull(unsigned long long nb)
+{
+	char	*str;
+	unsigned long long nbr;
+	int		i;
+
+	i = 0;
+	if (!(str = (char*)malloc(sizeof(char) * ft_size_u(nb) + 1)))
+		return (NULL);
+	if (nb < 0)
+		str[0] = '-';
+	nbr = nb;
+	if (nbr < 0)
+		nbr = -nbr;
+	str[ft_size_u(nb) - i++] = '\0';
+	while (nbr >= 10)
+	{
+		str[ft_size_u(nb) - i++] = (nbr % 10) + 48;
+		nbr /= 10;
+	}
+	str[ft_size_u(nb) - i++] = (nbr % 10) + 48;
+	return (str);
+}
+
+char				*ft_itoa_base(int dec, int base, int up)
 {
 	int		len;
 	char	*nbr;
@@ -73,8 +169,7 @@ char		*ft_itoa_base(int dec, int base, int up)
 	return (nbr);
 }
 
-
-char			*ft_ftoa(float nbr, int afterpoint)
+char				*ft_ftoa(float nbr, int afterpoint)
 {
 	char		*fstr;
 	int			i_part;

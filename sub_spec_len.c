@@ -4,7 +4,7 @@
 long long int	use_lenght_for_di(t_specifier spec, va_list ap)
 {
 	if (spec.length == 1)
-		return (va_arg(ap, long int));
+		return (va_arg(ap, long));
 	if (spec.length == 10)
 		return (va_arg(ap, long long));
 	if (spec.length == 2)
@@ -17,9 +17,9 @@ long long int	use_lenght_for_di(t_specifier spec, va_list ap)
 long long int	use_lenght_for_uoxx(t_specifier spec, va_list ap)
 {
 	if (spec.length == 1)
-		return ((unsigned long int)va_arg(ap, unsigned int));
+		return (va_arg(ap, unsigned long int));
 	if (spec.length == 10)
-		return ((unsigned long long int)va_arg(ap, unsigned int));
+		return (va_arg(ap, unsigned long long int));
 	if (spec.length == 2)
 		return ((unsigned short int)va_arg(ap, unsigned int));
 	if (spec.length == 20)

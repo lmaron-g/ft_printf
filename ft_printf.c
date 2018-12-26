@@ -18,7 +18,7 @@ void use_specifier(t_specifier spec, va_list ap)
 	if (spec.type == 'd' || spec.type == 'i')
 		print_specifier_di(spec, use_lenght_for_di(spec, ap));
 	if (spec.type == 'u')
-		ft_putnbr(va_arg(ap, unsigned int));
+		print_specifier_u(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'o')
 		ft_putstr(ft_itoa_base(va_arg(ap, unsigned int), 8, 0));
 	if (spec.type == 'x')
