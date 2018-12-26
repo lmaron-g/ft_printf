@@ -39,5 +39,6 @@ void			print_specifier_di(t_specifier spec, long long int nbr);
 void			print_specifier_u(t_specifier spec, unsigned long long nbr);
 void			print_specifier_s(t_specifier spec, va_list ap);
 void			print_specifier_c(t_specifier spec, va_list ap);
+void			print_specifier_p(t_specifier spec, va_list ap);
 
 #endif

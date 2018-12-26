@@ -29,6 +29,8 @@ void use_specifier(t_specifier spec, va_list ap)
 		ft_putstr(ft_ftoa((float)va_arg(ap, double), 6));
 	if (spec.type == 'c')
 		print_specifier_c(spec, ap);
+	if (spec.type == 'p')
+		print_specifier_p(spec, ap);
 	if (spec.type == 's')
 		print_specifier_s(spec, ap);
 }
