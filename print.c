@@ -9,14 +9,14 @@ void				print_specifier_di(t_specifier spec, long long int nbr)
 
 	len = 0;
 	src = ft_itoa_ll(nbr);
-	add_zero(&src, spec.precision);
+	prec_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec.flag_s, spec.flag_p);
-	len = ft_strlen(src);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
-		while (len++ < spec.width)
-			ft_putchar('0');
-	if (!spec.flag_m )
+		if (ft_strlen(src) < spec.width)
+			add_zero(&src, spec);
+	len = ft_strlen(src);
+	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 	ft_putstr(src);
@@ -32,13 +32,13 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 
 	len = 0;
 	src = ft_itoa_ull(nbr);
-	add_zero(&src, spec.precision);
+	prec_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec.flag_s, spec.flag_p);
+	if (spec.flag_z && !spec.flag_m && !spec.precision)
+		if (ft_strlen(src) < spec.width)
+			add_zero(&src, spec);
 	len = ft_strlen(src);
-	if (spec.flag_z && !spec.flag_m)
-		while (len++ < spec.width)
-			ft_putchar('0');
 	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -146,13 +146,13 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 
 	len = 0;
 	src = ft_itoa_base_ull(nbr, 16, spec.type);
+	prec_zero(&src, spec.precision);
 	if (spec.flag_h)
 		set_pref(&src, spec.type);
-	add_zero(&src, spec.precision);
+	if (spec.flag_z && !spec.flag_m && !spec.precision)
+		if (ft_strlen(src) < spec.width)
+			add_zero(&src, spec);
 	len = ft_strlen(src);
-	if (spec.flag_z && !spec.flag_m)
-		while (len++ < spec.width)
-			ft_putchar('0');
 	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');

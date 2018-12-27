@@ -18,7 +18,7 @@ int main()
 {
 	int a = 1472;
 
-	   printf("1234 - %#012X - 5678\n", a);
-	ft_printf("1234 - %#012X - 5678\n", a);
+	   printf("1234 - %#0.12x - 5678\n", a);
+	ft_printf("1234 - %#0.12x - 5678\n", a);
 	return 0;
 }

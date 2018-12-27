@@ -61,7 +61,7 @@ static int				ft_size_u(unsigned long long nb)
 	return (size);
 }
 
-void					add_zero(char **src, int precision)
+void					prec_zero(char **src, int precision)
 {
 	int				i;
 	int				len;
@@ -91,6 +91,30 @@ void					add_zero(char **src, int precision)
 			*src = new;
 		}
 	}
+}
+
+void					add_zero(char **src, t_specifier spec)
+{
+	int					i;
+	int					st;
+	int					len;
+	char				*new;
+
+	i = 0;
+	len = ft_strlen(*src);
+	new = ft_strnew(spec.width);
+	if (**src == '-' || **src == '+')
+		*new = **src;
+	if (**src == '0' && **src + 1 == spec.type && spec.type)
+		new = ft_strncpy(new, *src, 2);
+	while (new[i])
+		i++;
+	st = i;
+	while (len++ < spec.width)
+		new[i++] = '0';
+	ft_strcpy(&new[i], *src + st);
+	ft_strdel(src);
+	*src = new;
 }
 
 char					*ft_itoa_ll(long long int nb)
