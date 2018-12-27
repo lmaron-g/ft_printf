@@ -1,6 +1,16 @@
-#include "libft/includes/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/27 16:36:56 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/12/27 16:37:00 by lmaron-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-#include <stdio.h>
 
 void				print_specifier_di(t_specifier spec, long long int nbr)
 {
@@ -13,9 +23,9 @@ void				print_specifier_di(t_specifier spec, long long int nbr)
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec.flag_s, spec.flag_p);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
-		if (ft_strlen(src) < spec.width)
+		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
-	len = ft_strlen(src);
+	len = (int)ft_strlen(src);
 	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -36,9 +46,9 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec.flag_s, spec.flag_p);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
-		if (ft_strlen(src) < spec.width)
+		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
-	len = ft_strlen(src);
+	len = (int)ft_strlen(src);
 	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -50,26 +60,26 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 
 void				print_specifier_f(t_specifier spec, long double nbr)
 {
-	// char			*src;
-	// int				len;
-	//
-	// len = 0;
-	//
-	// src = ft_ftoa(nbr);
-	// add_zero(&src, spec.precision);
-	// if (spec.flag_p || spec.flag_s)
-	// 	set_plus(&src, spec.flag_s, spec.flag_p);
-	// len = ft_strlen(src);
-	// if (spec.flag_z && !spec.flag_m && !spec.precision)
-	// 	while (len++ < spec.width)
-	// 		ft_putchar('0');
-	// if (!spec.flag_m )
-	// 	while (len++ < spec.width)
-	// 		ft_putchar(' ');
-	// ft_putstr(src);
-	// if (spec.flag_m)
-	// 	while (len++ < spec.width)
-	// 		ft_putchar(' ');
+	char			*src;
+	int				len;
+
+	len = 0;
+
+	src = ft_ftoa(nbr, 6);
+	add_zero(&src, spec);
+	if (spec.flag_p || spec.flag_s)
+		set_plus(&src, spec.flag_s, spec.flag_p);
+	len = ft_strlen(src);
+	if (spec.flag_z && !spec.flag_m && !spec.precision)
+		while (len++ < spec.width)
+			ft_putchar('0');
+	if (!spec.flag_m )
+		while (len++ < spec.width)
+			ft_putchar(' ');
+	ft_putstr(src);
+	if (spec.flag_m)
+		while (len++ < spec.width)
+			ft_putchar(' ');
 }
 
 void				print_specifier_p(t_specifier spec, va_list ap)
@@ -84,13 +94,13 @@ void				print_specifier_p(t_specifier spec, va_list ap)
 	if (!spec.flag_m && spec.width)
 		while (len++ < spec.width)
 			ft_putchar(' ');
-	len = 2 * sizeof(p);
+	len = 2 * (int)sizeof(p);
 	while (len--)
 	{
 		s[len] = "0123456789abcdef"[p & 0x0F];
 		p >>= 4;
 	}
-	while (++len < 2 * sizeof(p))
+	while (++len < 2 * (int)sizeof(p))
 		ft_putchar(s[len]);
 	if (spec.flag_m)
 		while (len++ < spec.width)
@@ -150,7 +160,7 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 	if (spec.flag_h)
 		set_pref(&src, spec.type);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
-		if (ft_strlen(src) < spec.width)
+		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
 	len = ft_strlen(src);
 	if (!spec.flag_m)

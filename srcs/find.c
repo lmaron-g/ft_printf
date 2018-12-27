@@ -1,4 +1,15 @@
-#include "libft/includes/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/27 16:25:56 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/12/27 16:25:59 by lmaron-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void		find_flags(t_specifier *spec, char *src)
@@ -26,10 +37,10 @@ void		find_flags(t_specifier *spec, char *src)
 		i++;
 	}
 }
-int 		find_width(char *src, va_list ap)
+
+int			find_width(char *src, va_list ap)
 {
 	int		i;
-	int		out;
 
 	i = 0;
 	while (is_flag(src[i]))

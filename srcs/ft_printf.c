@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/includes/libft.h"
 #include "ft_printf.h"
 
-void use_specifier(t_specifier spec, va_list ap)
+void			use_specifier(t_specifier spec, va_list ap)
 {
 	if (spec.type == 'd' || spec.type == 'i')
 		print_specifier_di(spec, use_lenght_for_di(spec, ap));
@@ -33,9 +32,14 @@ void use_specifier(t_specifier spec, va_list ap)
 		print_specifier_s(spec, ap);
 }
 
-int 		scan_specifier(char *src, va_list ap)
+/*
+**  todo: consider length-flags ~57
+**  spec.parameter = find_parameter(src);
+*/
+
+int				scan_specifier(char *src, va_list ap)
 {
-	int		i;
+	int			i;
 	t_specifier	spec;
 
 	i = 0;
@@ -48,20 +52,19 @@ int 		scan_specifier(char *src, va_list ap)
 	spec.width = find_width(src, ap);
 	spec.length = find_lenght(src);
 	spec.precision = find_precision(src, ap);
-	//spec.parameter = find_parameter(src);
 	while (src[i] && !is_type(src[i]))
 		i++;
-	if (!is_type(src[i]))      //todo: consider length-flags
+	if (!is_type(src[i]))
 		return (0);
 	spec.type = src[i];
 	use_specifier(spec, ap);
 	return (i + 1);
 }
 
-void	ft_printf(char *src, ...)
+void			ft_printf(char *src, ...)
 {
-	int	i;
-	va_list ap;
+	int			i;
+	va_list		ap;
 
 	i = 0;
 	va_start(ap, src);

@@ -1,121 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/27 16:19:04 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/12/27 16:19:10 by lmaron-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-#include "libft/includes/libft.h"
-#include <stdio.h>
-
-int						ft_cat_pro(char **dest, char *src)
-{
-	char			*ret;
-	char			*fresh;
-	char			*dst;
-
-	ret = 0;
-	dst = *dest;
-	if (dst && src && (fresh = ft_strnew(ft_strlen(dst) + ft_strlen(src))))
-	{
-		ret = fresh;
-		while (*dst)
-			*fresh++ = (char)*dst++;
-		while (*src)
-			*fresh++ = (char)*src++;
-	}
-	else
-		return (0);
-	ft_strdel(dest);
-	*dest = ret;
-	return (1);
-}
-
-static int				ft_size(long long int nb)
-{
-	int		size;
-
-	size = 1;
-	if (nb < 0)
-	{
-		size++;
-		nb = -nb;
-	}
-	while (nb >= 10)
-	{
-		size++;
-		nb /= 10;
-	}
-	return (size);
-}
-
-static int				ft_size_u(unsigned long long nb)
-{
-	int		size;
-
-	size = 1;
-	if (nb < 0)
-	{
-		size++;
-		nb = -nb;
-	}
-	while (nb >= 10)
-	{
-		size++;
-		nb /= 10;
-	}
-	return (size);
-}
-
-void					prec_zero(char **src, int precision)
-{
-	int				i;
-	int				len;
-	char			*new;
-
-	i = 0;
-	len = ft_strlen(*src);
-	if (precision && precision > len)
-	{
-		if (**src != '-')
-		{
-			new = (char*)malloc(sizeof(char) * precision + 1);
-			while (len++ < precision)
-				new[i++] = '0';
-			ft_strcpy(&new[i], *src);
-			ft_strdel(src);
-			*src = new;
-		}
-		else
-		{
-			new = (char*)malloc(sizeof(char) * precision + 2);
-			new[i++] = '-';
-			while (len++ < precision)
-				new[i++] = '0';
-			ft_strcpy(&new[i], *src  + 1);
-			ft_strdel(src);
-			*src = new;
-		}
-	}
-}
-
-void					add_zero(char **src, t_specifier spec)
-{
-	int					i;
-	int					st;
-	int					len;
-	char				*new;
-
-	i = 0;
-	len = ft_strlen(*src);
-	new = ft_strnew(spec.width);
-	if (**src == '-' || **src == '+')
-		*new = **src;
-	if (**src == '0' && **src + 1 == spec.type && spec.type)
-		new = ft_strncpy(new, *src, 2);
-	while (new[i])
-		i++;
-	st = i;
-	while (len++ < spec.width)
-		new[i++] = '0';
-	ft_strcpy(&new[i], *src + st);
-	ft_strdel(src);
-	*src = new;
-}
 
 char					*ft_itoa_ll(long long int nb)
 {
@@ -151,11 +46,7 @@ char					*ft_itoa_ull(unsigned long long nb)
 	i = 0;
 	if (!(str = (char*)malloc(sizeof(char) * ft_size_u(nb) + 1)))
 		return (NULL);
-	if (nb < 0)
-		str[0] = '-';
 	nbr = nb;
-	if (nbr < 0)
-		nbr = -nbr;
 	str[ft_size_u(nb) - i++] = '\0';
 	while (nbr >= 10)
 	{
@@ -176,7 +67,7 @@ char					*ft_itoa_base(int dec, int base, int up)
 	len = 1;
 	if (dec < 0)
 		dec *= -1;
-	while (ft_pow(base, len) - 1 < dec)
+	while ((int)ft_pow(base, len) - 1 < dec)
 		len++;
 	nbr = (char*)malloc(sizeof(char*) * len);
 	nbr[len + neg] = '\0';
@@ -201,8 +92,6 @@ char					*ft_itoa_base_ull(unsigned long long dec, int base, char x)
 
 	neg = 0;
 	len = 1;
-	if (dec < 0)
-		dec *= -1;
 	while (ft_pow(base, len) - 1 < dec)
 		len++;
 	nbr = (char*)malloc(sizeof(char*) * len);

@@ -1,20 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/27 16:02:10 by lmaron-g          #+#    #+#             */
+/*   Updated: 2018/12/27 17:45:22 by lmaron-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdarg.h>
+# include <stdarg.h>
+# include "libft.h"
 
 typedef struct		s_specifier
 {
-	int 			precision;
-	int 			parameter;
+	int				precision;
+	int				parameter;
 	int				flag_m;
 	int				flag_p;
 	int				flag_s;
 	int				flag_h;
 	int				flag_z;
-	int 			length;
+	int				length;
 	int				width;
-	char 			type;
+	char			type;
 }					t_specifier;
 
 void				ft_printf(char *src, ...);
@@ -24,6 +37,8 @@ char				*ft_itoa_ull(unsigned long long nb);
 char				*ft_itoa_base(int dec, int base, int up);
 char				*ft_itoa_base_ull(unsigned long long dec, int base, char x);
 int					ft_cat_pro(char **dest, char *src);
+int					ft_size(long long int nb);
+int					ft_size_u(unsigned long long nb);
 unsigned long long	ft_pow(int nb, int pow);
 char				*ft_strrev(char *str);
 void				set_plus(char **src, int space, int plus);
@@ -33,7 +48,7 @@ int					is_type(char c);
 void				prec_zero(char **src, int precision);
 void				add_zero(char **src, t_specifier spec);
 void				find_flags(t_specifier *spec, char *src);
-int 				find_width(char *src, va_list ap);
+int					find_width(char *src, va_list ap);
 int					find_lenght(char *src);
 int					find_precision(char *src, va_list ap);
 long long int		use_lenght_for_di(t_specifier spec, va_list ap);

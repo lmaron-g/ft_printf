@@ -10,15 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/includes/libft.h"
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 #include <stdio.h>
 
 int main()
 {
 	int a = 1472;
 
-	   printf("1234 - %#0.12x - 5678\n", a);
-	ft_printf("1234 - %#0.12x - 5678\n", a);
+	   printf("1234 - %d - 5678\n", a);
+	ft_printf("1234 - %d - 5678\n", a);
 	return 0;
 }
