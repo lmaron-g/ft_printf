@@ -22,7 +22,7 @@ int					is_flag(char c)
 int					is_type(char c)
 {
 	if (c == 'd' || c == 'i' || c == 'u' || c == 'o' || c == 'x' \
-		|| c == 'X' || c == 'f' || c == 'c' || c == 's' || c == 'p')
+		|| c == 'X' || c == 'f' || c == 'c' || c == 's' || c == 'p' || c == '%')
 		return (1);
 	return (0);
 }

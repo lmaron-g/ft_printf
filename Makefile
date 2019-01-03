@@ -18,13 +18,14 @@ OBJ_D = objs
 
 GCCFLAGS = -Wall -Wextra -Werror
 
-SRCS = find.c   \
-	   sub_spec_len.c  \
-	   print.c   \
-	   ft_itoa2.c  \
+SRCS = find.c  \
+	   print.c  \
+	   print2.c  \
+	   ft_itoa2.c \
 	   functions.c \
-	   functions2.c \
-	   ft_printf.c \
+	   ft_printf.c  \
+	   functions2.c  \
+	   sub_spec_len.c \
 
 LIBFT = ft_atoi.c \
 		ft_bzero.c \
@@ -91,7 +92,7 @@ LIBFT = ft_atoi.c \
 		ft_lstaddend.c \
 		ft_lstfreeone.c \
 
-OBJS = $(addprefix $(OBJ_D)/,$(SRCS:.c=.o))
+OBJS  = $(addprefix $(OBJ_D)/,$(SRCS:.c=.o))
 OBJSL = $(addprefix $(OBJ_D)/,$(LIBFT:.c=.o))
 
 all: $(NAME)

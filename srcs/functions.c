@@ -14,9 +14,9 @@
 
 int						ft_cat_pro(char **dest, char *src)
 {
-	char			*ret;
-	char			*fresh;
-	char			*dst;
+	char				*ret;
+	char				*fresh;
+	char				*dst;
 
 	ret = 0;
 	dst = *dest;
@@ -37,9 +37,9 @@ int						ft_cat_pro(char **dest, char *src)
 
 void					prec_zero(char **src, int precision)
 {
-	int				i;
-	int				len;
-	char			*new;
+	int					i;
+	int					len;
+	char				*new;
 
 	i = 0;
 	len = ft_strlen(*src);
@@ -54,7 +54,7 @@ void					prec_zero(char **src, int precision)
 		{
 			new = (char*)malloc(sizeof(char) * precision + 2);
 			new[i++] = '-';
-			ft_strcpy(&new[len - precision], *src  + 1);
+			ft_strcpy(&new[len - precision], *src + 1);
 		}
 		while (len++ < precision)
 			new[i++] = '0';
@@ -87,9 +87,9 @@ void					add_zero(char **src, t_specifier spec)
 	*src = new;
 }
 
-void		set_plus(char **src, int space, int plus)
+void					set_plus(char **src, int space, int plus)
 {
-	char	*new;
+	char				*new;
 
 	if (**src != '-')
 	{
@@ -104,9 +104,9 @@ void		set_plus(char **src, int space, int plus)
 	}
 }
 
-void		set_pref(char **src, char type)
+void					set_pref(char **src, char type)
 {
-	char	*new;
+	char				*new;
 
 	new = (char*)malloc(sizeof(char) * ft_strlen(*src) + 3);
 	new[0] = '0';

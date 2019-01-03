@@ -24,7 +24,7 @@ void			use_specifier(t_specifier spec, va_list ap)
 		print_specifier_x(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'f')
 		ft_putstr(ft_ftoa((float)va_arg(ap, double), 6));
-	if (spec.type == 'c')
+	if (spec.type == 'c' || spec.type == '%')
 		print_specifier_c(spec, ap);
 	if (spec.type == 'p')
 		print_specifier_p(spec, ap);
@@ -43,11 +43,6 @@ int				scan_specifier(char *src, va_list ap)
 	t_specifier	spec;
 
 	i = 0;
-	if (src[i] == '%')
-	{
-		ft_putchar(src[i]);
-		return (1);
-	}
 	find_flags(&spec, src);
 	spec.width = find_width(src, ap);
 	spec.length = find_lenght(src);
@@ -61,7 +56,7 @@ int				scan_specifier(char *src, va_list ap)
 	return (i + 1);
 }
 
-void			ft_printf(char *src, ...)
+int				ft_printf(char *src, ...)
 {
 	int			i;
 	va_list		ap;
@@ -76,4 +71,5 @@ void			ft_printf(char *src, ...)
 			ft_putchar(src[i]);
 		i++;
 	}
+	return (g_r);
 }

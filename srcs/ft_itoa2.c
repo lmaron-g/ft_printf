@@ -14,12 +14,11 @@
 
 char					*ft_itoa_ll(long long int nb)
 {
-	char	*str;
-	long long int	nbr;
-	int		i;
+	char				*str;
+	long long int		nbr;
+	int					i;
 
 	i = 0;
-
 	if (!(str = (char*)malloc(sizeof(char) * ft_size(nb) + 1)))
 		return (NULL);
 	if (nb < 0)
@@ -84,7 +83,8 @@ char					*ft_itoa_base(int dec, int base, int up)
 	return (nbr);
 }
 
-char					*ft_itoa_base_ull(unsigned long long dec, int base, char x)
+char					*ft_itoa_base_ull(unsigned long long dec,
+															int base, char x)
 {
 	int					len;
 	char				*nbr;

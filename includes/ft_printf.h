@@ -13,8 +13,11 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <unistd.h>
+# include <stdlib.h>
 # include <stdarg.h>
-# include "libft.h"
+# include <stdio.h>
+# include "../libft/includes/libft.h"
 
 typedef struct		s_specifier
 {
@@ -30,7 +33,7 @@ typedef struct		s_specifier
 	char			type;
 }					t_specifier;
 
-void				ft_printf(char *src, ...);
+int					ft_printf(char *src, ...);
 char				*ft_ftoa(float nbr, int afterpoint);
 char				*ft_itoa_ll(long long int nb);
 char				*ft_itoa_ull(unsigned long long nb);
