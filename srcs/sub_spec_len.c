@@ -35,5 +35,5 @@ long long int	use_lenght_for_uoxx(t_specifier spec, va_list ap)
 		return ((unsigned short int)va_arg(ap, unsigned int));
 	if (spec.length == 20)
 		return ((unsigned char)va_arg(ap, unsigned int));
-	return (va_arg(ap, int));
+	return (va_arg(ap, unsigned int));
 }

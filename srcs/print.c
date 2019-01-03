@@ -109,7 +109,7 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 	len = 0;
 	src = ft_itoa_base_ull(nbr, 16, spec.type);
 	prec_zero(&src, spec.precision);
-	if (spec.flag_h)
+	if (spec.flag_h && nbr)
 		set_pref(&src, spec.type);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
 		if ((int)ft_strlen(src) < spec.width)
