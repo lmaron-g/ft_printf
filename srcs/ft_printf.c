@@ -33,7 +33,6 @@ void			use_specifier(t_specifier spec, va_list ap)
 }
 
 /*
-**  todo: consider length-flags ~57
 **  spec.parameter = find_parameter(src);
 */
 
@@ -47,7 +46,7 @@ int				scan_specifier(char *src, va_list ap)
 	spec.width = find_width(src, ap);
 	spec.length = find_lenght(src);
 	spec.precision = find_precision(src, ap);
-	while (src[i] && !is_type(src[i]))
+	while (src[i] && is_right(src[i]) && !is_type(src[i]))
 		i++;
 	if (!is_type(src[i]))
 		return (0);

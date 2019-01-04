@@ -57,7 +57,7 @@ int			find_precision(char *src, va_list ap)
 	int		i;
 
 	i = 0;
-	while (src[i] && src[i] != '.' && !ft_isalpha(src[i]))
+	while (src[i] && src[i] != '.' && !IS_ALPHA(src[i]))
 		i++;
 	if (src[i++] == '.')
 	{
@@ -65,7 +65,8 @@ int			find_precision(char *src, va_list ap)
 			return (va_arg(ap, int));
 		if (ft_atoi(&src[i]))
 			return (ft_atoi(&src[i]));
-		else return (-1);
+		else
+			return (-1);
 	}
 	return (0);
 }

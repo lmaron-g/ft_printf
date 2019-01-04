@@ -48,6 +48,7 @@ void				set_plus(char **src, t_specifier spec);
 void				set_pref(char **src, char type);
 int					is_flag(char c);
 int					is_type(char c);
+int					is_right(char c);
 void				prec_zero(char **src, int precision);
 void				add_zero(char **src, t_specifier spec);
 void				find_flags(t_specifier *spec, char *src);

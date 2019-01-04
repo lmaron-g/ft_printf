@@ -42,22 +42,21 @@ void					prec_zero(char **src, int precision)
 	char				*new;
 
 	i = 0;
-	if (**src != '-')
-		len = ft_strlen(*src);
-	else len = ft_strlen(*src) - 1;
+	len = ft_strlen(*src);
+	if (**src == '-')
+		len--;
 	if (precision && precision > len)
 	{
 		if (**src != '-')
-		{
 			new = (char*)malloc(sizeof(char) * precision + 1);
-			ft_strcpy(&new[precision - len], *src);
-		}
 		else
 		{
 			new = (char*)malloc(sizeof(char) * precision + 2);
 			new[i++] = '-';
-			ft_strcpy(&new[precision + 1 - len], *src + 1);
 		}
+		if (**src == '-')
+			ft_strcpy(&new[precision + 1 - len], *src);
+		ft_strcpy(&new[precision - len], *src);
 		while (len++ < precision)
 			new[i++] = '0';
 		ft_strdel(src);

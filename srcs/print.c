@@ -20,7 +20,8 @@ void				print_specifier_di(t_specifier spec, long long int nbr)
 	len = 0;
 	if (nbr == 0 && spec.precision == -1)
 		src = ft_strnew(0);
-	else src = ft_itoa_ll(nbr);
+	else
+		src = ft_itoa_ll(nbr);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec);
@@ -45,7 +46,8 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 	len = 0;
 	if (!nbr && spec.precision == -1)
 		src = ft_strnew(0);
-	else src = ft_itoa_ull(nbr);
+	else
+		src = ft_itoa_ull(nbr);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec);
@@ -119,7 +121,8 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 	len = 0;
 	if (!nbr && spec.precision == -1)
 		src = ft_strnew(0);
-	else src = ft_itoa_base_ull(nbr, 16, spec.type);
+	else
+		src = ft_itoa_base_ull(nbr, 16, spec.type);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_h && nbr)
 		set_pref(&src, spec.type);

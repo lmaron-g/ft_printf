@@ -68,7 +68,8 @@ void				print_specifier_o(t_specifier spec, unsigned long long nbr)
 	len = 0;
 	if (!nbr && spec.precision == -1 && !spec.flag_h)
 		src = ft_strnew(0);
-	else src = ft_itoa_base_ull(nbr, 8, spec.type);
+	else
+		src = ft_itoa_base_ull(nbr, 8, spec.type);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_h && nbr)
 		set_pref(&src, spec.type);
