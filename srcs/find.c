@@ -65,6 +65,7 @@ int			find_precision(char *src, va_list ap)
 			return (va_arg(ap, int));
 		if (ft_atoi(&src[i]))
 			return (ft_atoi(&src[i]));
+		else return (-1);
 	}
 	return (0);
 }

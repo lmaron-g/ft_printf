@@ -18,10 +18,12 @@ void				print_specifier_di(t_specifier spec, long long int nbr)
 	int				len;
 
 	len = 0;
-	src = ft_itoa_ll(nbr);
+	if (nbr == 0 && spec.precision == -1)
+		src = ft_strnew(0);
+	else src = ft_itoa_ll(nbr);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
-		set_plus(&src, spec.flag_s, spec.flag_p);
+		set_plus(&src, spec);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
 		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
@@ -41,10 +43,12 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 	int				len;
 
 	len = 0;
-	src = ft_itoa_ull(nbr);
+	if (!nbr && spec.precision == -1)
+		src = ft_strnew(0);
+	else src = ft_itoa_ull(nbr);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_p || spec.flag_s)
-		set_plus(&src, spec.flag_s, spec.flag_p);
+		set_plus(&src, spec);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
 		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
@@ -58,6 +62,10 @@ void				print_specifier_u(t_specifier spec, unsigned long long nbr)
 			ft_putchar(' ');
 }
 
+/*
+**	TODO: fix case: value = 0 & precision = 0
+*/
+
 void				print_specifier_s(t_specifier spec, va_list ap)
 {
 	char			*src;
@@ -70,8 +78,10 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 		return ;
 	}
 	src = ft_strdup(src);
-	if (spec.precision)
+	if (spec.precision > 0)
 		src[spec.precision] = '\0';
+	if (spec.precision == -1)
+		src[0] = '\0';
 	if (spec.width)
 		len = ft_strlen(src);
 	if (!spec.flag_m)
@@ -107,7 +117,9 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 	int				len;
 
 	len = 0;
-	src = ft_itoa_base_ull(nbr, 16, spec.type);
+	if (!nbr && spec.precision == -1)
+		src = ft_strnew(0);
+	else src = ft_itoa_base_ull(nbr, 16, spec.type);
 	prec_zero(&src, spec.precision);
 	if (spec.flag_h && nbr)
 		set_pref(&src, spec.type);
