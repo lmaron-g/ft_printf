@@ -16,10 +16,10 @@ void			use_specifier(t_specifier spec, va_list ap)
 {
 	if (spec.type == 'd' || spec.type == 'i')
 		print_specifier_di(spec, use_lenght_for_di(spec, ap));
-	if (spec.type == 'u')
-		print_specifier_u(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'o')
 		print_specifier_o(spec, use_lenght_for_uoxx(spec, ap));
+	if (spec.type == 'u')
+		print_specifier_u(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'x' || spec.type == 'X')
 		print_specifier_x(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'f')
