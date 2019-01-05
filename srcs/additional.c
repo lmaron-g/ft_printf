@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-long long int	use_lenght_for_di(t_specifier spec, va_list ap)
+long long int		use_lenght_for_di(t_specifier spec, va_list ap)
 {
 	if (spec.length == 1)
 		return (va_arg(ap, long));
@@ -25,7 +25,7 @@ long long int	use_lenght_for_di(t_specifier spec, va_list ap)
 	return (va_arg(ap, int));
 }
 
-long long int	use_lenght_for_uoxx(t_specifier spec, va_list ap)
+long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap)
 {
 	if (spec.length == 1)
 		return (va_arg(ap, unsigned long int));
@@ -36,6 +36,13 @@ long long int	use_lenght_for_uoxx(t_specifier spec, va_list ap)
 	if (spec.length == 20)
 		return ((unsigned char)va_arg(ap, unsigned int));
 	return (va_arg(ap, unsigned int));
+}
+
+long double			use_lenght_for_f(t_specifier spec, va_list ap)
+{
+	if (spec.length == 3)
+		return (va_arg(ap, long double));
+	return (va_arg(ap, double));
 }
 
 int					ft_size(long long int nb)

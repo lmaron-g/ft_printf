@@ -23,7 +23,7 @@ void			use_specifier(t_specifier spec, va_list ap)
 	if (spec.type == 'x' || spec.type == 'X')
 		print_specifier_x(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'f')
-		ft_putstr(ft_ftoa((float)va_arg(ap, double), 6));
+		print_specifier_f(spec, use_lenght_for_f(spec, ap));
 	if (spec.type == 'c' || spec.type == '%')
 		print_specifier_c(spec, ap);
 	if (spec.type == 'p')

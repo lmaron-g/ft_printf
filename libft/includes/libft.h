@@ -35,7 +35,7 @@ char				*ft_strdup(const char *s1);
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
 void				ft_putchar(char c);
-void				ft_putstr(char const *s);
+void				ft_putstr(char *s);
 void				ft_putnbr(int n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memset(void *b, int c, size_t len);

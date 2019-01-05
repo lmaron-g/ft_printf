@@ -18,7 +18,12 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 	int				len;
 
 	len = 0;
-	src = ft_ftoa(nbr, 6);
+	if (!spec.precision)
+		src = ft_ftoa(nbr, 6);
+	else if (spec.precision == -1)
+		src = ft_ftoa(nbr, 0);
+	else
+		src = ft_ftoa(nbr, spec.precision);
 	add_zero(&src, spec);
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec);
@@ -43,8 +48,7 @@ void				print_specifier_p(t_specifier spec, va_list ap)
 
 	len = 2 * sizeof(p);
 	s = (char*)malloc(len + 1);
-	va_arg(ap, void*);
-	//p = (unsigned int)va_arg(ap, void*);
+	p = (unsigned int)va_arg(ap, void*);
 	if (!spec.flag_m && spec.width)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -69,7 +73,8 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 	len = 0;
 	if (!(src = va_arg(ap, char*)))
 	{
-		ft_putstr("(null)");
+		write(1, "(null)", 6);
+		g_r += 6;
 		return ;
 	}
 	src = ft_strdup(src);

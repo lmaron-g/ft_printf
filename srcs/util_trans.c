@@ -58,9 +58,9 @@ char					*ft_itoa_ull(unsigned long long nb)
 
 char					*ft_itoa_base(int dec, int base, int up)
 {
-	int		len;
-	char	*nbr;
-	int		neg;
+	int					len;
+	char				*nbr;
+	int					neg;
 
 	neg = 0;
 	len = 1;
@@ -109,20 +109,46 @@ char					*ft_itoa_base_ull(unsigned long long dec,
 	return (nbr);
 }
 
-char					*ft_ftoa(float nbr, int afterpoint)
+char					*ft_ftoa(long double nbr, int afterpoint)
 {
-	char		*fstr;
-	int			i_part;
-	float		f_part;
-
-	i_part = (int)nbr;
-	f_part = nbr - (float)i_part;
-	fstr = ft_itoa(i_part);
-	if (afterpoint > 0)
+	char *temp;
+	char s[41];
+	char t;
+	double num;
+	int i;
+	int j;
+	i = afterpoint;
+	j = 0;
+	num = nbr;
+	if (num < 0)
 	{
-		ft_cat_pro(&fstr, ".");
-		f_part *= ft_pow(10, afterpoint);
-		ft_cat_pro(&fstr, ft_itoa((int)f_part));
+		num = -num;
+		s[j] = '-';
+		j++;
 	}
-	return (fstr);
+	do {
+		num = num / 10;
+		i++;
+	} while ((int)num > 0);
+	num = num * 10;
+	while (i > 0)
+	{
+		t = (int)num;
+		s[j] = t | 0x30;
+		i--;
+		j++;
+		if (i == afterpoint)
+		{
+			s[j] = '.';
+			j++;
+		}
+		num = num - (double)t;
+		num = num * 10;
+	}
+	s[j] = '\0';
+	j++;
+	temp = (char*)malloc(sizeof(char) * j);
+	for (i = 0; i<j; i++)
+    	temp[i] = s[i];
+	return(temp);
 }
