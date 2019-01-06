@@ -16,7 +16,7 @@ SRC_D = $(addprefix ./srcs/,$(SRCS))
 LIBFT_D = $(addprefix ./libft/,$(LIBFT))
 OBJ_D = objs
 
-GCCFLAGS = -Wall -Wextra -Werror
+GCCFLAGS = -g
 
 SRCS =  util_is.c  \
 		util_find.c	\

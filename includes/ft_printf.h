@@ -34,7 +34,7 @@ typedef struct		s_specifier
 }					t_specifier;
 
 int					ft_printf(char *src, ...);
-char				*ft_ftoa(long double nbr, int afterpoint);
+char				*ft_ftoa(double nbr, int afterpoint);
 char				*ft_itoa_ll(long long int nb);
 char				*ft_itoa_ull(unsigned long long nb);
 char				*ft_itoa_base(int dec, int base, int up);

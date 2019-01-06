@@ -18,19 +18,19 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 	int				len;
 
 	len = 0;
-	if (!spec.precision)
-		src = ft_ftoa(nbr, 6);
-	else if (spec.precision == -1)
+	if (spec.precision == -1)
 		src = ft_ftoa(nbr, 0);
 	else
-		src = ft_ftoa(nbr, spec.precision);
-	add_zero(&src, spec);
+		src = ft_ftoa(nbr, (!spec.precision) ? 6 : spec.precision);
+	prec_zero(&src, spec.precision);
+	if (!spec.flag_h && src[ft_strlen(src) - 1] == '.')
+		src[ft_strlen(src) - 1] = '\0';
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec);
-	len = ft_strlen(src);
 	if (spec.flag_z && !spec.flag_m && !spec.precision)
-		while (len++ < spec.width)
-			ft_putchar('0');
+		if ((int)ft_strlen(src) < spec.width)
+			add_zero(&src, spec);
+	len = ft_strlen(src);
 	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -42,24 +42,23 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 
 void				print_specifier_p(t_specifier spec, va_list ap)
 {
+	char			*src;
 	int				len;
-	char			*s;
-	unsigned int	p;
 
-	len = 2 * sizeof(p);
-	s = (char*)malloc(len + 1);
-	p = (unsigned int)va_arg(ap, void*);
-	if (!spec.flag_m && spec.width)
+	src = va_arg(ap, char *);
+	spec.precision = 0;
+	src = ft_itoa_base_ull((unsigned long long)src, 16, 'x');
+	spec.type = 'x';
+	prec_zero(&src, spec.precision);
+	set_pref(&src, spec.type);
+	if (spec.flag_z && !spec.flag_m && !spec.precision)
+		if ((int)ft_strlen(src) < spec.width)
+			add_zero(&src, spec);
+	len = ft_strlen(src);
+	if (!spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');
-	len = 2 * (int)sizeof(p);
-	while (len--)
-	{
-		s[len] = "0123456789abcdef"[p & 0x0F];
-		p >>= 4;
-	}
-	while (++len < 2 * (int)sizeof(p))
-		ft_putchar(s[len]);
+	ft_putstr(src);
 	if (spec.flag_m)
 		while (len++ < spec.width)
 			ft_putchar(' ');

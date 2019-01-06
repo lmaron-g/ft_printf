@@ -108,57 +108,32 @@ char					*ft_itoa_base_ull(unsigned long long dec,
 		nbr[0] = '-';
 	return (nbr);
 }
-//
-// char					*ft_ftoa(long double nbr, int afterpoint)
-// {
-// 	char				*src;
-// 	char				trans;
-// 	int					i;
-// 	int					j;
-//
-// 	src = (char*)malloc(sizeof(char) * afterpoint);
-// 	i = afterpoint + 1;
-// 	if (nbr < 0 && !(j = 0))
-// 	{
-// 		nbr = -nbr;
-// 		src[j++] = '-';
-// 	}
-// 	while ((int)nbr > 10 && ++i)
-// 		nbr /= (long double)10.0;
-// 	while (i-- > 0)
-// 	{
-// 		trans = (int)nbr;
-// 		src[j++] = trans | 0x30;
-// 		if (i == afterpoint)
-// 			src[j++] = '.';
-// 		nbr -= (double)trans;
-// 		nbr *= (long double)10.0;
-// 	}
-// 	src[j++] = '\0';
-// 	return (src);
-// }
 
-
-char					*ft_ftoa(double nbr, int afterpoint)
+char					*ft_ftoa(long double nbr, int afterpoint)
 {
-	long int i;
-	double f;
-	long int i1;
-	char		*src;
+	char				*src;
+	char				trans;
+	int					i;
+	int					j;
 
-	i = (long int)f;
-	f = nbr - i;
-	i1 = (long int)f;
-	while((double)i1 != f)
+	src = (char*)malloc(sizeof(char) * afterpoint);
+	i = afterpoint + 1;
+	if (nbr < 0 && !(j = 0))
 	{
-		f = f * 10;
-		i1 = (long int)f;
+		nbr = -nbr;
+		src[j++] = '-';
 	}
-	printf("%f\t%li", f, i1);
-	i1 *= (i1 < 0) ? -1 : 1;
-	afterpoint = 0;
-	src = ft_itoa(i);
-	ft_cat_pro(&src, ".");
-	ft_cat_pro(&src, ft_itoa(i1));
+	while ((int)nbr > 10 && ++i)
+		nbr /= (long double)10.0;
+	while (i-- > 0)
+	{
+		trans = (int)nbr;
+		src[j++] = trans | 0x30;
+		if (i == afterpoint)
+			src[j++] = '.';
+		nbr -= (double)trans;
+		nbr *= 10.0;
+	}
+	src[j++] = '\0';
 	return (src);
 }

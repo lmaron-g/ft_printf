@@ -61,6 +61,7 @@ int				ft_printf(char *src, ...)
 	va_list		ap;
 
 	i = 0;
+	g_r = 0;
 	va_start(ap, src);
 	while (src[i])
 	{

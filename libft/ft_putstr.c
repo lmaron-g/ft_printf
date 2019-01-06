@@ -23,5 +23,5 @@ void	ft_putstr(char *s)
 			ft_putchar((char)s[i]);
 			i++;
 		}
-		ft_strdel(&s);
+	ft_strdel(&s);
 }
