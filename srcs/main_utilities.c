@@ -95,9 +95,9 @@ void					set_plus(char **src, t_specifier spec)
 	if (**src != '-' && spec.type != 'u')
 	{
 		new = (char*)malloc(sizeof(char) * ft_strlen(*src) + 2);
-		if (spec.flag_p)
+		if (spec.flag_plus)
 			new[0] = '+';
-		else if (spec.flag_s)
+		else if (spec.flag_spase)
 			new[0] = ' ';
 		ft_strcpy(&new[1], *src);
 		ft_strdel(src);

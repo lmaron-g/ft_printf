@@ -22,12 +22,11 @@
 typedef struct		s_specifier
 {
 	int				precision;
-	int				parameter;
-	int				flag_m;
-	int				flag_p;
-	int				flag_s;
-	int				flag_h;
-	int				flag_z;
+	int				flag_minus;
+	int				flag_plus;
+	int				flag_spase;
+	int				flag_hash;
+	int				flag_zero;
 	int				length;
 	int				width;
 	char			type;

@@ -16,20 +16,20 @@ void			use_specifier(t_specifier spec, va_list ap)
 {
 	if (spec.type == 'd' || spec.type == 'i')
 		print_specifier_di(spec, use_lenght_for_di(spec, ap));
-	if (spec.type == 'o')
-		print_specifier_o(spec, use_lenght_for_uoxx(spec, ap));
-	if (spec.type == 'u')
-		print_specifier_u(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'x' || spec.type == 'X')
 		print_specifier_x(spec, use_lenght_for_uoxx(spec, ap));
-	if (spec.type == 'f')
-		print_specifier_f(spec, use_lenght_for_f(spec, ap));
 	if (spec.type == 'c' || spec.type == '%')
 		print_specifier_c(spec, ap);
 	if (spec.type == 'p')
 		print_specifier_p(spec, ap);
 	if (spec.type == 's')
 		print_specifier_s(spec, ap);
+	if (spec.type == 'o')
+		print_specifier_o(spec, use_lenght_for_uoxx(spec, ap));
+	if (spec.type == 'u')
+		print_specifier_u(spec, use_lenght_for_uoxx(spec, ap));
+	if (spec.type == 'f')
+		print_specifier_f(spec, use_lenght_for_f(spec, ap));
 }
 
 int				scan_specifier(char *src, va_list ap)

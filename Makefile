@@ -21,12 +21,12 @@ GCCFLAGS = -Wall -Wextra -Werror
 SRCS =  util_is.c  \
 		util_find.c	\
 		ft_printf.c  \
-		util_trans.c  \
-		additional.c   \
-		print_cspf.c    \
-		print_diouxx.c   \
-		spec_lenghts.c    \
-		main_utilities.c   \
+		additional.c  \
+		print_cspf.c   \
+		print_diouxx.c  \
+		spec_lenghts.c   \
+		main_utilities.c  \
+		util_translation.c \
 
 LIBFT = ft_itoa.c \
 		ft_atoi.c  \

@@ -23,19 +23,19 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 	else
 		src = ft_ftoa(nbr, (!spec.precision) ? 6 : spec.precision);
 	prec_zero(&src, spec.precision);
-	if (!spec.flag_h && src[ft_strlen(src) - 1] == '.')
+	if (!spec.flag_hash && src[ft_strlen(src) - 1] == '.')
 		src[ft_strlen(src) - 1] = '\0';
-	if (spec.flag_p || spec.flag_s)
+	if (spec.flag_plus || spec.flag_spase)
 		set_plus(&src, spec);
-	if (spec.flag_z && !spec.flag_m)
+	if (spec.flag_zero && !spec.flag_minus)
 		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
 	len = ft_strlen(src);
-	if (!spec.flag_m)
+	if (!spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 	ft_putstr(src);
-	if (spec.flag_m)
+	if (spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 }
@@ -51,15 +51,15 @@ void				print_specifier_p(t_specifier spec, va_list ap)
 	spec.type = 'x';
 	prec_zero(&src, spec.precision);
 	set_pref(&src, spec.type);
-	if (spec.flag_z && !spec.flag_m && !spec.precision)
+	if (spec.flag_zero && !spec.flag_minus && !spec.precision)
 		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
 	len = ft_strlen(src);
-	if (!spec.flag_m)
+	if (!spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 	ft_putstr(src);
-	if (spec.flag_m)
+	if (spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 }
@@ -83,11 +83,11 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 		src[0] = '\0';
 	if (spec.width)
 		len = ft_strlen(src);
-	if (!spec.flag_m)
+	if (!spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 	ft_putstr(src);
-	if (spec.flag_m)
+	if (spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 }
@@ -101,11 +101,11 @@ void				print_specifier_c(t_specifier spec, va_list ap)
 	c = va_arg(ap, int);
 	if (spec.type == '%')
 		c = '%';
-	if (!spec.flag_m && spec.width)
+	if (!spec.flag_minus && spec.width)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 	ft_putchar(c);
-	if (spec.flag_m)
+	if (spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 }

@@ -17,23 +17,23 @@ void		find_flags(t_specifier *spec, char *src)
 	int		i;
 
 	i = 0;
-	spec->flag_m = 0;
-	spec->flag_p = 0;
-	spec->flag_s = 0;
-	spec->flag_h = 0;
-	spec->flag_z = 0;
+	spec->flag_minus = 0;
+	spec->flag_spase = 0;
+	spec->flag_plus = 0;
+	spec->flag_hash = 0;
+	spec->flag_zero = 0;
 	while (is_flag(src[i]))
 	{
 		if (src[i] == '-')
-			spec->flag_m = 1;
-		if (src[i] == '+')
-			spec->flag_p = 1;
+			spec->flag_minus = 1;
 		if (src[i] == ' ')
-			spec->flag_s = 1;
+			spec->flag_spase = 1;
+		if (src[i] == '+')
+			spec->flag_plus = 1;
 		if (src[i] == '#')
-			spec->flag_h = 1;
+			spec->flag_hash = 1;
 		if (src[i] == '0')
-			spec->flag_z = 1;
+			spec->flag_zero = 1;
 		i++;
 	}
 }
