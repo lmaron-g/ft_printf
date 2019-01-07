@@ -40,7 +40,7 @@ long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap)
 
 long double			use_lenght_for_f(t_specifier spec, va_list ap)
 {
-	if (spec.length == 3)
+	if (spec.length == 3 || spec.length == 1)
 		return (va_arg(ap, long double));
 	return (va_arg(ap, double));
 }
