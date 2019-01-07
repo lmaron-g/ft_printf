@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-char			*ft_itoa_ll(long long int n)
+char					*ft_itoa_ll(long long int n)
 {
-	long long int				i;
-	long long int				sign;
-	unsigned long long			nbr;
-	char						*str;
+	long long int		i;
+	long long int		sign;
+	unsigned long long	nbr;
+	char				*str;
 
 	sign = 0;
 	if (n < 0)
