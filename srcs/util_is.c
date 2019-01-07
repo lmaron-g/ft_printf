@@ -36,3 +36,17 @@ int	is_right(char c)
 		return (1);
 	return (0);
 }
+
+int	is_nan(double f)
+{
+	if (f != f)
+		return (1);
+	return (0);
+}
+
+int	is_inf(double f)
+{
+	if (f >= 1 / 0.0 && f <= 1 / 0.0)
+		return (1);
+	return (0);
+}

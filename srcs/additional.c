@@ -12,40 +12,31 @@
 
 #include "ft_printf.h"
 
-long long int		use_lenght_for_di(t_specifier spec, va_list ap)
+char				*round_it(char **src)
 {
-	if (spec.length == 1)
-		return (va_arg(ap, long));
-	if (spec.length == 10)
-		return (va_arg(ap, long long));
-	if (spec.length == 2)
-		return ((short int)va_arg(ap, int));
-	if (spec.length == 20)
-		return ((char)va_arg(ap, int));
-	return (va_arg(ap, int));
+	int				i;
+
+	i = ft_strlen(*src) - 1;
+	if ('5' <= (*src)[i] && (*src)[i] <= '9')
+	{
+		(*src)[i] = '\0';
+		while (i)
+		{
+			if ((*src)[i] == '9')
+				(*src)[i] = '0';
+			else if ('0' <= (*src)[i] && (*src)[i] <= '8')
+			{
+				(*src)[i]++;
+				return (*src);
+			}
+			i--;
+		}
+	}
+	(*src)[i] = '\0';
+	return (*src);
 }
 
-long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap)
-{
-	if (spec.length == 1)
-		return (va_arg(ap, unsigned long int));
-	if (spec.length == 10)
-		return (va_arg(ap, unsigned long long int));
-	if (spec.length == 2)
-		return ((unsigned short int)va_arg(ap, unsigned int));
-	if (spec.length == 20)
-		return ((unsigned char)va_arg(ap, unsigned int));
-	return (va_arg(ap, unsigned int));
-}
-
-long double			use_lenght_for_f(t_specifier spec, va_list ap)
-{
-	if (spec.length == 3)
-		return (va_arg(ap, long double));
-	return (va_arg(ap, double));
-}
-
-int					ft_size(long long int nb)
+int					ft_nbrlen(long long int nb)
 {
 	int				size;
 
@@ -63,7 +54,7 @@ int					ft_size(long long int nb)
 	return (size);
 }
 
-int					ft_size_u(unsigned long long nb)
+int					ft_nbrlen_u(unsigned long long nb)
 {
 	int				size;
 

@@ -34,16 +34,17 @@ typedef struct		s_specifier
 }					t_specifier;
 
 int					ft_printf(char *src, ...);
-char				*ft_ftoa(double nbr, int afterpoint);
+char				*ft_ftoa(long double nbr, int afterpoint);
 char				*ft_itoa_ll(long long int nb);
 char				*ft_itoa_ull(unsigned long long nb);
 char				*ft_itoa_base(int dec, int base, int up);
 char				*ft_itoa_base_ull(unsigned long long dec, int base, char x);
 int					ft_cat_pro(char **dest, char *src);
-int					ft_size(long long int nb);
-int					ft_size_u(unsigned long long nb);
+int					ft_nbrlen(long long int nb);
+int					ft_nbrlen_u(unsigned long long nb);
 unsigned long long	ft_pow(int nb, int pow);
 char				*ft_strrev(char *str);
+char				*round_it(char **src);
 void				set_plus(char **src, t_specifier spec);
 void				set_pref(char **src, char type);
 int					is_flag(char c);

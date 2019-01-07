@@ -12,27 +12,32 @@
 
 #include "ft_printf.h"
 
-char					*ft_itoa_ll(long long int nb)
+char			*ft_itoa_ll(long long int n)
 {
-	char				*str;
-	long long int		nbr;
-	int					i;
+	long long int				i;
+	long long int				sign;
+	unsigned long long			nbr;
+	char						*str;
 
-	i = 0;
-	if (!(str = (char*)malloc(sizeof(char) * ft_size(nb) + 1)))
-		return (NULL);
-	if (nb < 0)
-		str[0] = '-';
-	nbr = nb;
-	if (nbr < 0)
-		nbr = -nbr;
-	str[ft_size(nb) - i++] = '\0';
-	while (nbr >= 10)
+	sign = 0;
+	if (n < 0)
 	{
-		str[ft_size(nb) - i++] = (nbr % 10) + 48;
+		nbr = -n;
+		sign = 1;
+	}
+	else
+		nbr = n;
+	i = ft_nbrlen_u(nbr) + sign;
+	str = ft_strnew(i);
+	if (!str)
+		return (NULL);
+	while (--i >= sign)
+	{
+		str[i] = nbr % 10 + '0';
 		nbr /= 10;
 	}
-	str[ft_size(nb) - i++] = (nbr % 10) + 48;
+	if (sign)
+		str[0] = '-';
 	return (str);
 }
 
@@ -43,16 +48,16 @@ char					*ft_itoa_ull(unsigned long long nb)
 	int					i;
 
 	i = 0;
-	if (!(str = (char*)malloc(sizeof(char) * ft_size_u(nb) + 1)))
+	if (!(str = (char*)malloc(sizeof(char) * ft_nbrlen_u(nb) + 1)))
 		return (NULL);
 	nbr = nb;
-	str[ft_size_u(nb) - i++] = '\0';
+	str[ft_nbrlen_u(nb) - i++] = '\0';
 	while (nbr >= 10)
 	{
-		str[ft_size_u(nb) - i++] = (nbr % 10) + 48;
+		str[ft_nbrlen_u(nb) - i++] = (nbr % 10) + 48;
 		nbr /= 10;
 	}
-	str[ft_size_u(nb) - i++] = (nbr % 10) + 48;
+	str[ft_nbrlen_u(nb) - i++] = (nbr % 10) + 48;
 	return (str);
 }
 
@@ -108,57 +113,32 @@ char					*ft_itoa_base_ull(unsigned long long dec,
 		nbr[0] = '-';
 	return (nbr);
 }
-//
-// char					*ft_ftoa(long double nbr, int afterpoint)
-// {
-// 	char				*src;
-// 	char				trans;
-// 	int					i;
-// 	int					j;
-//
-// 	src = (char*)malloc(sizeof(char) * afterpoint);
-// 	i = afterpoint + 1;
-// 	if (nbr < 0 && !(j = 0))
-// 	{
-// 		nbr = -nbr;
-// 		src[j++] = '-';
-// 	}
-// 	while ((int)nbr > 10 && ++i)
-// 		nbr /= (long double)10.0;
-// 	while (i-- > 0)
-// 	{
-// 		trans = (int)nbr;
-// 		src[j++] = trans | 0x30;
-// 		if (i == afterpoint)
-// 			src[j++] = '.';
-// 		nbr -= (double)trans;
-// 		nbr *= (long double)10.0;
-// 	}
-// 	src[j++] = '\0';
-// 	return (src);
-// }
 
-
-char					*ft_ftoa(double nbr, int afterpoint)
+char					*ft_ftoa(long double nbr, int afterpoint)
 {
-	long int i;
-	double f;
-	long int i1;
-	char		*src;
+	char				*src;
+	unsigned char		trans;
+	int					i;
+	int					j;
 
-	i = (long int)f;
-	f = nbr - i;
-	i1 = (long int)f;
-	while((double)i1 != f)
+	src = (char*)malloc(sizeof(char) * ++afterpoint);
+	i = afterpoint + 1;
+	if (nbr < 0 && !(j = 0))
 	{
-		f = f * 10;
-		i1 = (long int)f;
+		nbr = -nbr;
+		src[j++] = '-';
 	}
-	printf("%f\t%li", f, i1);
-	i1 *= (i1 < 0) ? -1 : 1;
-	afterpoint = 0;
-	src = ft_itoa(i);
-	ft_cat_pro(&src, ".");
-	ft_cat_pro(&src, ft_itoa(i1));
-	return (src);
+	while ((int)nbr > 10 && ++i)
+		nbr /= (long double)10.0;
+	while (i-- > 0)
+	{
+		trans = (long int)nbr;
+		src[j++] = trans | 0x30;
+		if (i == afterpoint)
+			src[j++] = '.';
+		nbr -= (double)trans;
+		nbr *= (long double)10.0;
+	}
+	src[j++] = '\0';
+	return (round_it(&src));
 }

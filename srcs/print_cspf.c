@@ -27,7 +27,7 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 		src[ft_strlen(src) - 1] = '\0';
 	if (spec.flag_p || spec.flag_s)
 		set_plus(&src, spec);
-	if (spec.flag_z && !spec.flag_m && !spec.precision)
+	if (spec.flag_z && !spec.flag_m)
 		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
 	len = ft_strlen(src);

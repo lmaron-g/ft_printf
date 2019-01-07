@@ -25,7 +25,8 @@ SRCS =  util_is.c  \
 		additional.c   \
 		print_cspf.c    \
 		print_diouxx.c   \
-		main_utilities.c  \
+		spec_lenghts.c    \
+		main_utilities.c   \
 
 LIBFT = ft_itoa.c \
 		ft_atoi.c  \
