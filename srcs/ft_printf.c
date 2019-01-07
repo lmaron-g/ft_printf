@@ -6,7 +6,7 @@
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 22:12:21 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/12/21 22:12:24 by lmaron-g         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:18:26 by lmaron-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ void			use_specifier(t_specifier spec, va_list ap)
 	if (spec.type == 's')
 		print_specifier_s(spec, ap);
 }
-
-/*
-**  spec.parameter = find_parameter(src);
-*/
 
 int				scan_specifier(char *src, va_list ap)
 {
