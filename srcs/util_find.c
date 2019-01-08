@@ -88,6 +88,10 @@ int			find_lenght(char *src)
 		return (20);
 	if (contains_lenght(src, "ll"))
 		return (10);
+	if (contains_lenght(src, "j"))
+		return (5);
+	if (contains_lenght(src, "z"))
+		return (4);
 	if (contains_lenght(src, "L"))
 		return (3);
 	if (contains_lenght(src, "h"))

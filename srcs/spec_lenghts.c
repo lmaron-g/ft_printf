@@ -22,6 +22,10 @@ long long int		use_lenght_for_di(t_specifier spec, va_list ap)
 		return ((short int)va_arg(ap, int));
 	if (spec.length == 20)
 		return ((char)va_arg(ap, int));
+	if (spec.length == 4)
+		return (va_arg(ap, size_t));
+	if (spec.length == 5)
+		return (va_arg(ap, long));
 	return (va_arg(ap, int));
 }
 

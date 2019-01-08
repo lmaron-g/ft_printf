@@ -55,7 +55,7 @@ void					prec_zero(char **src, int precision)
 			new[i++] = '-';
 		}
 		if (**src == '-')
-			ft_strcpy(&new[precision + 1 - len], *src);
+			ft_strcpy(&new[precision + 1 - len], &(*src)[1]);
 		ft_strcpy(&new[precision - len], *src);
 		while (len++ < precision)
 			new[i++] = '0';
@@ -74,7 +74,7 @@ void					add_zero(char **src, t_specifier spec)
 	i = 0;
 	len = ft_strlen(*src);
 	new = ft_strnew(spec.width);
-	if (**src == '-' || **src == '+')
+	if (**src == '-' || **src == '+' ||  **src == ' ')
 		*new = **src;
 	if (**src == '0' && (*src)[1] == spec.type && spec.type)
 		new = ft_strncpy(new, *src, 2);

@@ -1,2 +1,2 @@
-gcc /Users/lmaron-g/Desktop/main.c libftprintf.a
+gcc /Users/lmaron-g/main.c libftprintf.a
 ./a.out
