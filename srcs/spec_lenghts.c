@@ -14,7 +14,7 @@
 
 long long int		use_lenght_for_di(t_specifier spec, va_list ap)
 {
-	if (spec.length == 1)
+	if (spec.length == 1 || spec.type == 'D')
 		return (va_arg(ap, long));
 	if (spec.length == 10)
 		return (va_arg(ap, long long));
@@ -31,7 +31,7 @@ long long int		use_lenght_for_di(t_specifier spec, va_list ap)
 
 long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap)
 {
-	if (spec.length == 1)
+	if (spec.length == 1 || spec.type == 'O' || spec.type == 'U')
 		return (va_arg(ap, unsigned long int));
 	if (spec.length == 10)
 		return (va_arg(ap, unsigned long long int));
@@ -39,12 +39,30 @@ long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap)
 		return ((unsigned short int)va_arg(ap, unsigned int));
 	if (spec.length == 20)
 		return ((unsigned char)va_arg(ap, unsigned int));
+	if (spec.length == 4)
+		return (va_arg(ap, size_t));
+	if (spec.length == 5)
+		return (va_arg(ap, long));
 	return (va_arg(ap, unsigned int));
 }
 
 long double			use_lenght_for_f(t_specifier spec, va_list ap)
 {
-	if (spec.length == 3 || spec.length == 1)
+	if (spec.length == 3 || spec.length == 1 || spec.type == 'F')
 		return (va_arg(ap, long double));
 	return (va_arg(ap, double));
 }
+
+// long				use_lenght_for_c(t_specifier spec, va_list ap)
+// {
+// 	if (spec.type == 'C' || spec.length == 1)
+// 		return ((long)va_arg(ap, wchar_t));
+// 	return ((long)va_arg(ap, int));
+// }
+
+// long				*use_lenght_for_s(t_specifier spec, va_list ap)
+// {
+// 	if (spec.type == 'S' || spec.length == 1)
+// 		return ((long*)va_arg(ap, wchar_t));
+// 	return ((long*)va_arg(ap, int));
+// }

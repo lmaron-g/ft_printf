@@ -111,11 +111,14 @@ void					set_pref(char **src, char type)
 	char				*new;
 
 	i = 0;
-	new = (char*)malloc(sizeof(char) * ft_strlen(*src) + 3);
-	new[i++] = '0';
-	if (type == 'x' || type == 'X')
-		new[i++] = type;
-	ft_strcpy(&new[i], *src);
-	ft_strdel(src);
-	*src = new;
+	if (!(**src == '0' && (type == 'o' || type == 'O')))
+	{
+		new = (char*)malloc(sizeof(char) * ft_strlen(*src) + 3);
+		new[i++] = '0';
+		if (type == 'x' || type == 'X')
+			new[i++] = type;
+		ft_strcpy(&new[i], *src);
+		ft_strdel(src);
+		*src = new;
+	}
 }

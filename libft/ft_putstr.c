@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
 
 void	ft_putstr(char *src)
@@ -18,10 +19,11 @@ void	ft_putstr(char *src)
 
 	i = 0;
 	if (src)
+	{
 		while (src[i] != '\0')
-		{
-			ft_putchar((char)src[i]);
 			i++;
-		}
-	ft_strdel(&src);
+		write(1, src, i);
+		g_r += i;
+		ft_strdel(&src);
+	}
 }

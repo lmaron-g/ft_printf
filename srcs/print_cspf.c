@@ -77,7 +77,7 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 		return ;
 	}
 	src = ft_strdup(src);
-	if (spec.precision > 0)
+	if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src))
 		src[spec.precision] = '\0';
 	if (spec.precision == -1)
 		src[0] = '\0';
@@ -94,7 +94,7 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 
 void				print_specifier_c(t_specifier spec, va_list ap)
 {
-	char			c;
+	int				c;
 	int				len;
 
 	len = 1;
