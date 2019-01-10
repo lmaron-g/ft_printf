@@ -115,3 +115,29 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 }
+
+void				print_specifier_b(t_specifier spec, unsigned long long nbr)
+{
+	char			*src;
+	int				len;
+
+	len = 0;
+	if (!nbr && spec.precision == -1)
+		src = ft_strnew(0);
+	else
+		src = ft_itoa_base_ull(nbr, 2, spec.type);
+	prec_zero(&src, spec.precision);
+	if (spec.flag_hash && nbr)
+		set_pref(&src, spec.type);
+	if (spec.flag_zero && !spec.flag_minus && !spec.precision)
+		if ((int)ft_strlen(src) < spec.width)
+			add_zero(&src, spec);
+	len = ft_strlen(src);
+	if (!spec.flag_minus)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+	ft_putstr(src);
+	if (spec.flag_minus)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+}

@@ -56,15 +56,17 @@ int					find_width(char *src, va_list ap);
 int					find_lenght(char *src);
 int					find_precision(char *src, va_list ap);
 long double			use_lenght_for_f(t_specifier spec, va_list ap);
-long				use_lenght_for_c(t_specifier spec, va_list ap);
 long long int		use_lenght_for_di(t_specifier spec, va_list ap);
 long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap);
 void				print_specifier_di(t_specifier spec, long long int nbr);
 void				print_specifier_u(t_specifier spec, unsigned long long nbr);
 void				print_specifier_x(t_specifier spec, unsigned long long nbr);
+void				print_specifier_b(t_specifier spec, unsigned long long nbr);
 void				print_specifier_o(t_specifier spec, unsigned long long nbr);
 void				print_specifier_f(t_specifier spec, long double nbr);
+void				print_specifier_S(t_specifier spec, va_list ap);
 void				print_specifier_s(t_specifier spec, va_list ap);
+void				print_specifier_C(t_specifier spec, va_list ap);
 void				print_specifier_c(t_specifier spec, va_list ap);
 void				print_specifier_p(t_specifier spec, va_list ap);
 

@@ -13,6 +13,13 @@
 #include "libft.h"
 #include <unistd.h>
 
+void				ft_putchar(char c)
+{
+	write(1, &c, 1);
+	g_r++;
+}
+
+/*
 static void			ft_putchar_unic_3(int c)
 {
 	unsigned char	simb;
@@ -73,3 +80,4 @@ void				ft_putchar(int c)
 	else 
 		ft_putchar_unic_2(c);
 }
+*/

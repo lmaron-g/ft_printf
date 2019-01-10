@@ -17,3 +17,9 @@ void	ft_strdel(char **as)
 	if (as && *as)
 		ft_memdel((void**)as);
 }
+
+void	ft_unicode_strdel(wchar_t **as)
+{
+	if (as && *as)
+		ft_memdel((void**)as);
+}

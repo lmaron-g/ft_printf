@@ -30,6 +30,27 @@ char		*ft_strdup(const char *s1)
 		rez[copycount] = s1[copycount];
 		copycount++;
 	}
-	rez[copycount] = s1[copycount];
+	rez[copycount] = '\0';
+	return (rez);
+}
+
+wchar_t		*ft_unicode_strdup(wchar_t *s1)
+{
+	int		len;
+	int		copycount;
+	wchar_t	*rez;
+
+	len = 0;
+	copycount = 0;
+	while (s1[len] != '\0')
+		len++;
+	if (!(rez = (wchar_t*)malloc(sizeof(wchar_t) * (len + 1))))
+		return (0);
+	while (s1[copycount])
+	{
+		rez[copycount] = s1[copycount];
+		copycount++;
+	}
+	rez[copycount] = '\0';
 	return (rez);
 }
