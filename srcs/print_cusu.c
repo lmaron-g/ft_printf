@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_CS.c                                       :+:      :+:    :+:   */
+/*   print_cusu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -22,7 +22,7 @@ wchar_t				*ft_unicode_precision(wchar_t *src, int precision)
 	if (precision == -1)
 		src[0] = '\0';
 	if (precision > 0)
-		while(src[i])
+		while (src[i])
 		{
 			len += ft_unicode_simblen(src[i]);
 			if (len > precision)
@@ -32,18 +32,14 @@ wchar_t				*ft_unicode_precision(wchar_t *src, int precision)
 	return (src);
 }
 
-void				print_specifier_S(t_specifier spec, va_list ap)
+void				print_specifier_su(t_specifier spec, va_list ap)
 {
 	wchar_t			*src;
 	int				len;
 
 	len = 0;
 	if (!(src = va_arg(ap, wchar_t*)))
-	{
-		write(1, "(null)", 6);
-		g_r += 6;
-		return ;
-	}
+		src = ft_unicode_strdup(L"(null)");
 	src = ft_unicode_strdup(src);
 	src = ft_unicode_precision(src, spec.precision);
 	if (spec.width)
@@ -57,7 +53,23 @@ void				print_specifier_S(t_specifier spec, va_list ap)
 			ft_putchar(' ');
 }
 
-void				print_specifier_W(t_specifier spec, va_list ap)
+void				print_specifier_cu(t_specifier spec, va_list ap)
+{
+	wchar_t			c;
+	int				len;
+
+	c = va_arg(ap, wchar_t);
+	len = ft_unicode_simblen(c);
+	if (!spec.flag_minus && spec.width)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+	ft_put_unicode(c);
+	if (spec.flag_minus)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+}
+
+void				print_specifier_wu(t_specifier spec, va_list ap)
 {
 	wchar_t			**src;
 	int				len;
@@ -84,18 +96,30 @@ void				print_specifier_W(t_specifier spec, va_list ap)
 	}
 }
 
-void				print_specifier_C(t_specifier spec, va_list ap)
+void				print_specifier_w(t_specifier spec, va_list ap)
 {
-	wchar_t			c;
+	char			**src;
 	int				len;
+	int				i;
 
-	c = va_arg(ap, wchar_t);
-	len = ft_unicode_simblen(c);
-	if (!spec.flag_minus && spec.width)
-		while (len++ < spec.width)
-			ft_putchar(' ');
-	ft_put_unicode(c);
-	if (spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
+	i = 0;
+	len = 0;
+	src = va_arg(ap, char**);
+	while (src[i])
+	{
+		src[i] = ft_strdup(src[i]);
+		if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src[i]))
+			src[i][spec.precision] = '\0';
+		if (spec.width)
+			len = ft_strlen(src[i]);
+		if (!spec.flag_minus)
+			while (len++ < spec.width)
+				ft_putchar(' ');
+		ft_putstr(src[i]);
+		if (spec.flag_minus)
+			while (len++ < spec.width)
+				ft_putchar(' ');
+		ft_putchar('\n');
+		i++;
+	}
 }

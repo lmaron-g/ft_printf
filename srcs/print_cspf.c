@@ -12,6 +12,18 @@
 
 #include "ft_printf.h"
 
+static void			pref_for_f(char **src, t_specifier spec)
+{
+	prec_zero(src, spec.precision);
+	if (!spec.flag_hash && (*src)[ft_strlen(*src) - 1] == '.')
+		(*src)[ft_strlen(*src) - 1] = '\0';
+	if (spec.flag_plus || spec.flag_spase)
+		set_plus(src, spec);
+	if (spec.flag_zero && !spec.flag_minus)
+		if ((int)ft_strlen(*src) < spec.width)
+			add_zero(src, spec);
+}
+
 void				print_specifier_f(t_specifier spec, long double nbr)
 {
 	char			*src;
@@ -22,14 +34,8 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 		src = ft_ftoa(nbr, 0);
 	else
 		src = ft_ftoa(nbr, (!spec.precision) ? 6 : spec.precision);
-	prec_zero(&src, spec.precision);
-	if (!spec.flag_hash && src[ft_strlen(src) - 1] == '.')
-		src[ft_strlen(src) - 1] = '\0';
-	if (spec.flag_plus || spec.flag_spase)
-		set_plus(&src, spec);
-	if (spec.flag_zero && !spec.flag_minus)
-		if ((int)ft_strlen(src) < spec.width)
-			add_zero(&src, spec);
+	if (!ft_content(src, "nan") && !ft_content(src, "inf"))
+		pref_for_f(&src, spec);
 	len = ft_strlen(src);
 	if (!spec.flag_minus)
 		while (len++ < spec.width)
@@ -71,12 +77,9 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 
 	len = 0;
 	if (!(src = va_arg(ap, char*)))
-	{
-		write(1, "(null)", 6);
-		g_r += 6;
-		return ;
-	}
-	src = ft_strdup(src);
+		src = ft_strdup("(null)");
+	else
+		src = ft_strdup(src);
 	if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src))
 		src[spec.precision] = '\0';
 	if (spec.precision == -1)
@@ -98,9 +101,10 @@ void				print_specifier_c(t_specifier spec, va_list ap)
 	int				len;
 
 	len = 1;
-	c = va_arg(ap, int);
 	if (spec.type == '%')
 		c = '%';
+	else
+		c = va_arg(ap, int);
 	if (!spec.flag_minus && spec.width)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -108,32 +112,4 @@ void				print_specifier_c(t_specifier spec, va_list ap)
 	if (spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
-}
-
-void				print_specifier_w(t_specifier spec, va_list ap)
-{
-	char			**src;
-	int				len;
-	int				i;
-
-	i = 0;
-	len = 0;
-	src = va_arg(ap, char**);
-	while (src[i])
-	{
-		src[i] = ft_strdup(src[i]);
-		if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src[i]))
-			src[i][spec.precision] = '\0';
-		if (spec.width)
-			len = ft_strlen(src[i]);
-		if (!spec.flag_minus)
-			while (len++ < spec.width)
-				ft_putchar(' ');
-		ft_putstr(src[i]);
-		if (spec.flag_minus)
-			while (len++ < spec.width)
-				ft_putchar(' ');
-		ft_putchar('\n');
-		i++;
-	}
 }

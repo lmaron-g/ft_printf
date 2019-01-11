@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void 				ft_put_unicode(wchar_t c)
+void				ft_put_unicode(wchar_t c)
 {
 	if (c < 0x80)
 		ft_putchar(c);
@@ -38,7 +38,7 @@ void 				ft_put_unicode(wchar_t c)
 
 void				ft_put_unicode_str(wchar_t *src)
 {
-	int 			i;
+	int				i;
 
 	i = 0;
 	if (src)
@@ -75,7 +75,7 @@ int					ft_unicode_strlen(wchar_t *src)
 
 	i = 0;
 	len = 0;
-	while(src[i])
+	while (src[i])
 		len += ft_unicode_simblen(src[i++]);
 	return (len);
 }

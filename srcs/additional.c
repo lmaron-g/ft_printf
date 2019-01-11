@@ -26,7 +26,7 @@ char				*round_it(char *src)
 			else if ('0' <= src[i] && src[i] <= '8')
 			{
 				src[i]++;
-				return src;
+				return (src);
 			}
 	}
 	src[i] = '\0';

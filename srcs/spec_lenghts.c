@@ -48,7 +48,23 @@ long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap)
 
 long double			use_lenght_for_f(t_specifier spec, va_list ap)
 {
-	if (spec.length == 3 || spec.length == 1 || spec.type == 'F')
+	if ((spec.length == 3 && spec.type == 'f'))
 		return (va_arg(ap, long double));
 	return (va_arg(ap, double));
+}
+
+void				print_strings(t_specifier spec, va_list ap)
+{
+	if (spec.type == 's' && spec.length != 1)
+		print_specifier_s(spec, ap);
+	if (spec.type == 'S' || (spec.type == 's' && spec.length == 1))
+		print_specifier_su(spec, ap);
+}
+
+void				print_chars(t_specifier spec, va_list ap)
+{
+	if ((spec.type == '%') || (spec.type == 'c' && spec.length != 1))
+		print_specifier_c(spec, ap);
+	if (spec.type == 'C' || (spec.type == 'c' && spec.length == 1))
+		print_specifier_cu(spec, ap);
 }

@@ -24,22 +24,18 @@ void			use_specifier(t_specifier spec, va_list ap)
 		print_specifier_x(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'f' || spec.type == 'F')
 		print_specifier_f(spec, use_lenght_for_f(spec, ap));
-	if (spec.type == 'C' || (spec.type == 'c' && spec.length == 1))
-		print_specifier_C(spec, ap);
-	if (spec.type == 'S' || (spec.type == 's' && spec.length == 1))
-		print_specifier_S(spec, ap);
-	if ((spec.type == 'c' && spec.length != 1) || spec.type == '%')
-		print_specifier_c(spec, ap);
-	if (spec.type == 's' && spec.length != 1)
-		print_specifier_s(spec, ap);
+	if (spec.type == 's' || spec.type == 'S')
+		print_strings(spec, ap);
+	if (spec.type == 'c' || spec.type == 'C' || spec.type == '%')
+		print_chars(spec, ap);
 	if (spec.type == 'p')
 		print_specifier_p(spec, ap);
-	if (spec.type == 'b')
-		print_specifier_b(spec, use_lenght_for_uoxx(spec, ap));
 	if (spec.type == 'W' || (spec.type == 'w' && spec.length == 1))
-		print_specifier_W(spec, ap);
+		print_specifier_wu(spec, ap);
 	if (spec.type == 'w' && spec.length != 1)
 		print_specifier_w(spec, ap);
+	if (spec.type == 'b')
+		print_specifier_b(spec, use_lenght_for_uoxx(spec, ap));
 }
 
 int				scan_specifier(char *src, va_list ap)
@@ -61,9 +57,9 @@ int				scan_specifier(char *src, va_list ap)
 	return (i + 1);
 }
 
-int			ft_content_color(const char *str, const char *sub)
+int				ft_content(const char *str, const char *sub)
 {
-	size_t	n;
+	size_t		n;
 
 	n = ft_strlen((char*)sub);
 	if (!ft_memcmp(str, sub, n))
@@ -76,23 +72,25 @@ int				scan_color(char *src)
 	int			i;
 
 	i = 0;
-	if (!(i += ft_content_color(src, "{BLACK}")))
-		ft_printf(BLACK);
-	if (!(i += ft_content_color(src, "{WHITE}")))
-		ft_printf(WHITE);
-	if (!(i += ft_content_color(src, "{YELLOW}")))
-		ft_printf(YELLOW);
-	if (!(i += ft_content_color(src, "{PURPUL}")))
-		ft_printf(PURPUL);
-	if (!(i += ft_content_color(src, "{GREEN}")))
-		ft_printf(GREEN);
-	if (!(i += ft_content_color(src, "{RED}")))
+	if ((i += ft_content(src, "{RED}")))
 		ft_printf(RED);
-	if (!(i += ft_content_color(src, "{BLUE}")))
+	else if ((i += ft_content(src, "{BLACK}")))
+		ft_printf(BLACK);
+	else if ((i += ft_content(src, "{WHITE}")))
+		ft_printf(WHITE);
+	else if ((i += ft_content(src, "{YELLOW}")))
+		ft_printf(YELLOW);
+	else if ((i += ft_content(src, "{PURPUL}")))
+		ft_printf(PURPUL);
+	else if ((i += ft_content(src, "{GREEN}")))
+		ft_printf(GREEN);
+	else if ((i += ft_content(src, "{RED}")))
+		ft_printf(RED);
+	else if ((i += ft_content(src, "{BLUE}")))
 		ft_printf(BLUE);
-	if (!(i += ft_content_color(src, "{CYAN}")))
+	else if ((i += ft_content(src, "{CYAN}")))
 		ft_printf(CYAN);
-	if (!(i += ft_content_color(src, "{EOC}")))
+	else if ((i += ft_content(src, "{EOC}")))
 		ft_printf(EOC);
 	return (i);
 }

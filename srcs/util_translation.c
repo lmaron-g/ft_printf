@@ -122,9 +122,14 @@ char					*ft_ftoa(long double n, int precision)
 	unsigned char	trans;
 
 	i = 0;
+	if (IS_INF(n))
+		return (ft_strdup("inf"));
+	if (IS_NAN(n))
+		return (ft_strdup("nan"));
 	s1 = ft_itoa_ll((long)n);
 	s2 = ft_strnew(++precision);
 	ft_cat_pro(&s1, ".");
+	n *= (n < 0.0) ? -1 : 1;
 	n -= (long)n;
 	while (precision--)
 	{
