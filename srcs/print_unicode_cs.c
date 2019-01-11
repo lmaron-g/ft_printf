@@ -32,7 +32,7 @@ wchar_t				*ft_unicode_precision(wchar_t *src, int precision)
 	return (src);
 }
 
-void				print_specifier_su(t_specifier spec, va_list ap)
+void				print_specifier_l_s(t_specifier spec, va_list ap)
 {
 	wchar_t			*src;
 	int				len;
@@ -40,10 +40,8 @@ void				print_specifier_su(t_specifier spec, va_list ap)
 	len = 0;
 	if (!(src = va_arg(ap, wchar_t*)))
 		src = ft_unicode_strdup(L"(null)");
-	src = ft_unicode_strdup(src);
-	src = ft_unicode_precision(src, spec.precision);
-	if (spec.width)
-		len = ft_unicode_strlen(src);
+	src = ft_unicode_precision(ft_unicode_strdup(src), spec.precision);
+	len = ft_unicode_strlen(src);
 	if (!spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
@@ -53,7 +51,7 @@ void				print_specifier_su(t_specifier spec, va_list ap)
 			ft_putchar(' ');
 }
 
-void				print_specifier_cu(t_specifier spec, va_list ap)
+void				print_specifier_l_c(t_specifier spec, va_list ap)
 {
 	wchar_t			c;
 	int				len;
@@ -69,7 +67,7 @@ void				print_specifier_cu(t_specifier spec, va_list ap)
 			ft_putchar(' ');
 }
 
-void				print_specifier_wu(t_specifier spec, va_list ap)
+void				print_specifier_l_w(t_specifier spec, va_list ap)
 {
 	wchar_t			**src;
 	int				len;
@@ -88,34 +86,6 @@ void				print_specifier_wu(t_specifier spec, va_list ap)
 			while (len++ < spec.width)
 				ft_putchar(' ');
 		ft_put_unicode_str(src[i]);
-		if (spec.flag_minus)
-			while (len++ < spec.width)
-				ft_putchar(' ');
-		ft_putchar('\n');
-		i++;
-	}
-}
-
-void				print_specifier_w(t_specifier spec, va_list ap)
-{
-	char			**src;
-	int				len;
-	int				i;
-
-	i = 0;
-	len = 0;
-	src = va_arg(ap, char**);
-	while (src[i])
-	{
-		src[i] = ft_strdup(src[i]);
-		if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src[i]))
-			src[i][spec.precision] = '\0';
-		if (spec.width)
-			len = ft_strlen(src[i]);
-		if (!spec.flag_minus)
-			while (len++ < spec.width)
-				ft_putchar(' ');
-		ft_putstr(src[i]);
 		if (spec.flag_minus)
 			while (len++ < spec.width)
 				ft_putchar(' ');

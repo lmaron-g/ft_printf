@@ -12,6 +12,44 @@
 
 #include "ft_printf.h"
 
+int				ft_consist(const char *str, const char *sub)
+{
+	size_t		n;
+
+	n = ft_strlen((char*)sub);
+	if (!ft_memcmp(str, sub, n))
+		return (n);
+	return (0);
+}
+
+int				scan_color(char *src)
+{
+	int			i;
+
+	i = 0;
+	if ((i += ft_consist(src, "{RED}")))
+		ft_printf(RED);
+	else if ((i += ft_consist(src, "{BLACK}")))
+		ft_printf(BLACK);
+	else if ((i += ft_consist(src, "{WHITE}")))
+		ft_printf(WHITE);
+	else if ((i += ft_consist(src, "{YELLOW}")))
+		ft_printf(YELLOW);
+	else if ((i += ft_consist(src, "{PURPUL}")))
+		ft_printf(PURPUL);
+	else if ((i += ft_consist(src, "{GREEN}")))
+		ft_printf(GREEN);
+	else if ((i += ft_consist(src, "{RED}")))
+		ft_printf(RED);
+	else if ((i += ft_consist(src, "{BLUE}")))
+		ft_printf(BLUE);
+	else if ((i += ft_consist(src, "{CYAN}")))
+		ft_printf(CYAN);
+	else if ((i += ft_consist(src, "{EOC}")))
+		ft_printf(EOC);
+	return (i);
+}
+
 void			use_specifier(t_specifier spec, va_list ap)
 {
 	if (spec.type == 'd' || spec.type == 'D' || spec.type == 'i')
@@ -31,7 +69,7 @@ void			use_specifier(t_specifier spec, va_list ap)
 	if (spec.type == 'p')
 		print_specifier_p(spec, ap);
 	if (spec.type == 'W' || (spec.type == 'w' && spec.length == 1))
-		print_specifier_wu(spec, ap);
+		print_specifier_l_w(spec, ap);
 	if (spec.type == 'w' && spec.length != 1)
 		print_specifier_w(spec, ap);
 	if (spec.type == 'b')
@@ -55,44 +93,6 @@ int				scan_specifier(char *src, va_list ap)
 	spec.type = src[i];
 	use_specifier(spec, ap);
 	return (i + 1);
-}
-
-int				ft_content(const char *str, const char *sub)
-{
-	size_t		n;
-
-	n = ft_strlen((char*)sub);
-	if (!ft_memcmp(str, sub, n))
-		return (n);
-	return (0);
-}
-
-int				scan_color(char *src)
-{
-	int			i;
-
-	i = 0;
-	if ((i += ft_content(src, "{RED}")))
-		ft_printf(RED);
-	else if ((i += ft_content(src, "{BLACK}")))
-		ft_printf(BLACK);
-	else if ((i += ft_content(src, "{WHITE}")))
-		ft_printf(WHITE);
-	else if ((i += ft_content(src, "{YELLOW}")))
-		ft_printf(YELLOW);
-	else if ((i += ft_content(src, "{PURPUL}")))
-		ft_printf(PURPUL);
-	else if ((i += ft_content(src, "{GREEN}")))
-		ft_printf(GREEN);
-	else if ((i += ft_content(src, "{RED}")))
-		ft_printf(RED);
-	else if ((i += ft_content(src, "{BLUE}")))
-		ft_printf(BLUE);
-	else if ((i += ft_content(src, "{CYAN}")))
-		ft_printf(CYAN);
-	else if ((i += ft_content(src, "{EOC}")))
-		ft_printf(EOC);
-	return (i);
 }
 
 int				ft_printf(char *src, ...)

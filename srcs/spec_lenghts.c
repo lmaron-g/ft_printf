@@ -58,7 +58,7 @@ void				print_strings(t_specifier spec, va_list ap)
 	if (spec.type == 's' && spec.length != 1)
 		print_specifier_s(spec, ap);
 	if (spec.type == 'S' || (spec.type == 's' && spec.length == 1))
-		print_specifier_su(spec, ap);
+		print_specifier_l_s(spec, ap);
 }
 
 void				print_chars(t_specifier spec, va_list ap)
@@ -66,5 +66,5 @@ void				print_chars(t_specifier spec, va_list ap)
 	if ((spec.type == '%') || (spec.type == 'c' && spec.length != 1))
 		print_specifier_c(spec, ap);
 	if (spec.type == 'C' || (spec.type == 'c' && spec.length == 1))
-		print_specifier_cu(spec, ap);
+		print_specifier_l_c(spec, ap);
 }

@@ -18,11 +18,11 @@ OBJ_D = objs
 
 GCCFLAGS = -Wall -Wextra -Werror
 
-SRCS =  print_cusu.c\
+SRCS =  print_unicode.c\
+		print_unicode_cs.c\
 		util_is.c  \
 		util_find.c	\
 		ft_printf.c  \
-		print_unic.c  \
 		additional.c   \
 		print_cspf.c    \
 		print_diouxx.c   \

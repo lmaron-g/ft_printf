@@ -33,6 +33,21 @@ char				*round_it(char *src)
 	return (src);
 }
 
+
+void 				alignment_optput(t_specifier spec, char *src)
+{
+	int				len;
+
+	len = (int)ft_strlen(src);
+	if (!spec.flag_minus)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+	ft_putstr(src);
+	if (spec.flag_minus)
+		while (len++ < spec.width)
+			ft_putchar(' ');
+}
+
 int					ft_nbrlen(long long int nb)
 {
 	int				size;

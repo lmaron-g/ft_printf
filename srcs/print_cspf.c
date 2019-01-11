@@ -12,44 +12,32 @@
 
 #include "ft_printf.h"
 
-static void			pref_for_f(char **src, t_specifier spec)
-{
-	prec_zero(src, spec.precision);
-	if (!spec.flag_hash && (*src)[ft_strlen(*src) - 1] == '.')
-		(*src)[ft_strlen(*src) - 1] = '\0';
-	if (spec.flag_plus || spec.flag_spase)
-		set_plus(src, spec);
-	if (spec.flag_zero && !spec.flag_minus)
-		if ((int)ft_strlen(*src) < spec.width)
-			add_zero(src, spec);
-}
-
 void				print_specifier_f(t_specifier spec, long double nbr)
 {
 	char			*src;
-	int				len;
 
-	len = 0;
 	if (spec.precision == -1)
 		src = ft_ftoa(nbr, 0);
 	else
 		src = ft_ftoa(nbr, (!spec.precision) ? 6 : spec.precision);
-	if (!ft_content(src, "nan") && !ft_content(src, "inf"))
-		pref_for_f(&src, spec);
-	len = ft_strlen(src);
-	if (!spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
-	ft_putstr(src);
-	if (spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
+	if (!ft_consist(src, "nan") && !ft_consist(src, "inf"))
+	{
+		prec_zero(&src, spec.precision);
+		if (!spec.flag_hash && src[ft_strlen(src) - 1] == '.')
+			src[ft_strlen(src) - 1] = '\0';
+		if (spec.flag_plus || spec.flag_spase)
+			set_plus(&src, spec);
+		if (spec.flag_zero && !spec.flag_minus)
+			if ((int)ft_strlen(src) < spec.width)
+				add_zero(&src, spec);
+	}
+	alignment_optput(spec, src);
+
 }
 
 void				print_specifier_p(t_specifier spec, va_list ap)
 {
 	char			*src;
-	int				len;
 
 	src = va_arg(ap, char *);
 	spec.precision = 0;
@@ -60,22 +48,13 @@ void				print_specifier_p(t_specifier spec, va_list ap)
 	if (spec.flag_zero && !spec.flag_minus && !spec.precision)
 		if ((int)ft_strlen(src) < spec.width)
 			add_zero(&src, spec);
-	len = ft_strlen(src);
-	if (!spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
-	ft_putstr(src);
-	if (spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
+	alignment_optput(spec, src);
 }
 
 void				print_specifier_s(t_specifier spec, va_list ap)
 {
 	char			*src;
-	int				len;
 
-	len = 0;
 	if (!(src = va_arg(ap, char*)))
 		src = ft_strdup("(null)");
 	else
@@ -84,15 +63,7 @@ void				print_specifier_s(t_specifier spec, va_list ap)
 		src[spec.precision] = '\0';
 	if (spec.precision == -1)
 		src[0] = '\0';
-	if (spec.width)
-		len = ft_strlen(src);
-	if (!spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
-	ft_putstr(src);
-	if (spec.flag_minus)
-		while (len++ < spec.width)
-			ft_putchar(' ');
+	alignment_optput(spec, src);
 }
 
 void				print_specifier_c(t_specifier spec, va_list ap)
@@ -112,4 +83,22 @@ void				print_specifier_c(t_specifier spec, va_list ap)
 	if (spec.flag_minus)
 		while (len++ < spec.width)
 			ft_putchar(' ');
+}
+
+void				print_specifier_w(t_specifier spec, va_list ap)
+{
+	char			**src;
+	int				i;
+
+	i = 0;
+	src = va_arg(ap, char**);
+	while (src[i])
+	{
+		src[i] = ft_strdup(src[i]);
+		if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src[i]))
+			src[i][spec.precision] = '\0';
+		alignment_optput(spec, src[i]);
+		ft_putchar('\n');
+		i++;
+	}
 }
