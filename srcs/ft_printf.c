@@ -61,28 +61,38 @@ int				scan_specifier(char *src, va_list ap)
 	return (i + 1);
 }
 
+int			ft_content_color(const char *str, const char *sub)
+{
+	size_t	n;
+
+	n = ft_strlen((char*)sub);
+	if (!ft_memcmp(str, sub, n))
+		return (n);
+	return (0);
+}
+
 int				scan_color(char *src)
 {
 	int			i;
 
 	i = 0;
-	if (ft_is_contains(src, "{BLACK}"))
+	if (!(i += ft_content_color(src, "{BLACK}")))
 		ft_printf(BLACK);
-	if (ft_is_contains(src, "{WHITE}"))
+	if (!(i += ft_content_color(src, "{WHITE}")))
 		ft_printf(WHITE);
-	if (ft_is_contains(src, "{YELLOW}"))
+	if (!(i += ft_content_color(src, "{YELLOW}")))
 		ft_printf(YELLOW);
-	if (ft_is_contains(src, "{PURPUL}"))
+	if (!(i += ft_content_color(src, "{PURPUL}")))
 		ft_printf(PURPUL);
-	if (ft_is_contains(src, "{GREEN}"))
+	if (!(i += ft_content_color(src, "{GREEN}")))
 		ft_printf(GREEN);
-	if (ft_is_contains(src, "{RED}"))
+	if (!(i += ft_content_color(src, "{RED}")))
 		ft_printf(RED);
-	if (ft_is_contains(src, "{BLUE}"))
+	if (!(i += ft_content_color(src, "{BLUE}")))
 		ft_printf(BLUE);
-	if (ft_is_contains(src, "{CYAN}"))
+	if (!(i += ft_content_color(src, "{CYAN}")))
 		ft_printf(CYAN);
-	if (ft_is_contains(src, "{EOC}"))
+	if (!(i += ft_content_color(src, "{EOC}")))
 		ft_printf(EOC);
 	return (i);
 }
