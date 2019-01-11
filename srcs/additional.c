@@ -12,28 +12,25 @@
 
 #include "ft_printf.h"
 
-char				*round_it(char **src)
+char				*round_it(char *src)
 {
 	int				i;
 
-	i = ft_strlen(*src) - 1;
-	if ('5' <= (*src)[i] && (*src)[i] <= '9')
+	i = ft_strlen(src) - 1;
+	if ('5' <= src[i] && src[i] <= '9')
 	{
-		(*src)[i] = '\0';
-		while (i)
-		{
-			if ((*src)[i] == '9')
-				(*src)[i] = '0';
-			else if ('0' <= (*src)[i] && (*src)[i] <= '8')
+		src[i] = '\0';
+		while (--i)
+			if (src[i] == '9')
+				src[i] = '0';
+			else if ('0' <= src[i] && src[i] <= '8')
 			{
-				(*src)[i]++;
-				return (*src);
+				src[i]++;
+				return src;
 			}
-			i--;
-		}
 	}
-	(*src)[i] = '\0';
-	return (*src);
+	src[i] = '\0';
+	return (src);
 }
 
 int					ft_nbrlen(long long int nb)

@@ -52,17 +52,3 @@ long double			use_lenght_for_f(t_specifier spec, va_list ap)
 		return (va_arg(ap, long double));
 	return (va_arg(ap, double));
 }
-
-// long				use_lenght_for_c(t_specifier spec, va_list ap)
-// {
-// 	if (spec.type == 'C' || spec.length == 1)
-// 		return ((long)va_arg(ap, wchar_t));
-// 	return ((long)va_arg(ap, int));
-// }
-
-// long				*use_lenght_for_s(t_specifier spec, va_list ap)
-// {
-// 	if (spec.type == 'S' || spec.length == 1)
-// 		return ((long*)va_arg(ap, wchar_t));
-// 	return ((long*)va_arg(ap, int));
-// }

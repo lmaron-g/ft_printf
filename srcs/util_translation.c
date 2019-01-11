@@ -114,31 +114,26 @@ char					*ft_itoa_base_ull(unsigned long long dec,
 	return (nbr);
 }
 
-char					*ft_ftoa(long double nbr, int afterpoint)
+char					*ft_ftoa(long double n, int precision)
 {
-	char				*src;
-	unsigned char		trans;
-	int					i;
-	int					j;
+	long			i;
+	char			*s1;
+	char			*s2;
+	unsigned char	trans;
 
-	src = (char*)malloc(sizeof(char) * ++afterpoint);
-	i = afterpoint + 1;
-	if (nbr < 0 && !(j = 0))
+	i = 0;
+	s1 = ft_itoa_ll((long)n);
+	s2 = ft_strnew(++precision);
+	ft_cat_pro(&s1, ".");
+	n -= (long)n;
+	while (precision--)
 	{
-		nbr = -nbr;
-		src[j++] = '-';
+		n *= 10.0;
+		trans = (long int)n;
+		s2[i++] = trans | 0x30;
+		n -= (double)trans;
 	}
-	while ((int)nbr > 10 && ++i)
-		nbr /= (long double)10.0;
-	while (i-- > 0)
-	{
-		trans = (long int)nbr;
-		src[j++] = trans | 0x30;
-		if (i == afterpoint)
-			src[j++] = '.';
-		nbr -= (double)trans;
-		nbr *= (long double)10.0;
-	}
-	src[j++] = '\0';
-	return (round_it(&src));
+	ft_cat_pro(&s1, s2);
+	ft_strdel(&s2);
+	return (round_it(s1));
 }

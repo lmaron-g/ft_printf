@@ -71,7 +71,7 @@ int			find_precision(char *src, va_list ap)
 	return (0);
 }
 
-int			contains_lenght(const char *src, const char *sub)
+int			ft_is_contains(const char *src, const char *sub)
 {
 	size_t	n;
 
@@ -84,19 +84,19 @@ int			contains_lenght(const char *src, const char *sub)
 
 int			find_lenght(char *src)
 {
-	if (contains_lenght(src, "hh"))
+	if (ft_is_contains(src, "hh"))
 		return (20);
-	if (contains_lenght(src, "ll"))
+	if (ft_is_contains(src, "ll"))
 		return (10);
-	if (contains_lenght(src, "j"))
+	if (ft_is_contains(src, "j"))
 		return (5);
-	if (contains_lenght(src, "z"))
+	if (ft_is_contains(src, "z"))
 		return (4);
-	if (contains_lenght(src, "L"))
+	if (ft_is_contains(src, "L"))
 		return (3);
-	if (contains_lenght(src, "h"))
+	if (ft_is_contains(src, "h"))
 		return (2);
-	if (contains_lenght(src, "l"))
+	if (ft_is_contains(src, "l"))
 		return (1);
 	return (0);
 }

@@ -19,6 +19,16 @@
 # include <stdio.h>
 # include "../libft/includes/libft.h"
 
+#define EOC	  	"\033[0m"
+#define RED     "\033[1;31m"
+#define YELLOW  "\033[1;33m"
+#define WHITE   "\033[1;37m"
+#define BLACK	"\[\033[0;30m]"
+#define GREEN	"\[\033[0;32m]"
+#define BLUE	"\[\033[0;34m]"
+#define PURPUL	"\[\033[0;35m]"
+#define CYAN	"\[\033[0;36m]"
+
 typedef struct		s_specifier
 {
 	int				precision;
@@ -43,7 +53,7 @@ int					ft_nbrlen(long long int nb);
 int					ft_nbrlen_u(unsigned long long nb);
 unsigned long long	ft_pow(int nb, int pow);
 char				*ft_strrev(char *str);
-char				*round_it(char **src);
+char				*round_it(char *src);
 void				set_plus(char **src, t_specifier spec);
 void				set_pref(char **src, char type);
 int					is_flag(char c);
@@ -55,6 +65,11 @@ void				find_flags(t_specifier *spec, char *src);
 int					find_width(char *src, va_list ap);
 int					find_lenght(char *src);
 int					find_precision(char *src, va_list ap);
+void 				ft_put_unicode(wchar_t c);
+void				ft_put_unicode_str(wchar_t *src);
+int					ft_unicode_simblen(wchar_t c);
+int					ft_unicode_strlen(wchar_t *src);
+int					ft_is_contains(const char *src, const char *sub);
 long double			use_lenght_for_f(t_specifier spec, va_list ap);
 long long int		use_lenght_for_di(t_specifier spec, va_list ap);
 long long int		use_lenght_for_uoxx(t_specifier spec, va_list ap);

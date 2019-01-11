@@ -18,7 +18,8 @@ OBJ_D = objs
 
 GCCFLAGS = -Wall -Wextra -Werror
 
-SRCS =  util_is.c  \
+SRCS =  print_CS.c\
+		util_is.c  \
 		util_find.c	\
 		ft_printf.c  \
 		print_unic.c  \
