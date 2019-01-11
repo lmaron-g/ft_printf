@@ -36,6 +36,10 @@ void			use_specifier(t_specifier spec, va_list ap)
 		print_specifier_p(spec, ap);
 	if (spec.type == 'b')
 		print_specifier_b(spec, use_lenght_for_uoxx(spec, ap));
+	if (spec.type == 'W' || (spec.type == 'w' && spec.length == 1))
+		print_specifier_W(spec, ap);
+	if (spec.type == 'w' && spec.length != 1)
+		print_specifier_w(spec, ap);
 }
 
 int				scan_specifier(char *src, va_list ap)
@@ -80,7 +84,7 @@ int				scan_color(char *src)
 		ft_printf(CYAN);
 	if (ft_is_contains(src, "{EOC}"))
 		ft_printf(EOC);
-	return (i + 1);
+	return (i);
 }
 
 int				ft_printf(char *src, ...)

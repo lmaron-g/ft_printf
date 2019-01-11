@@ -109,3 +109,31 @@ void				print_specifier_c(t_specifier spec, va_list ap)
 		while (len++ < spec.width)
 			ft_putchar(' ');
 }
+
+void				print_specifier_w(t_specifier spec, va_list ap)
+{
+	char			**src;
+	int				len;
+	int				i;
+
+	i = 0;
+	len = 0;
+	src = va_arg(ap, char**);
+	while (src[i])
+	{
+		src[i] = ft_strdup(src[i]);
+		if (spec.precision > 0 && spec.precision <= (int)ft_strlen(src[i]))
+			src[i][spec.precision] = '\0';
+		if (spec.width)
+			len = ft_strlen(src[i]);
+		if (!spec.flag_minus)
+			while (len++ < spec.width)
+				ft_putchar(' ');
+		ft_putstr(src[i]);
+		if (spec.flag_minus)
+			while (len++ < spec.width)
+				ft_putchar(' ');
+		ft_putchar('\n');
+		i++;
+	}
+}

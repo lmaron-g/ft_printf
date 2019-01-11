@@ -84,5 +84,7 @@ void				print_specifier_s(t_specifier spec, va_list ap);
 void				print_specifier_C(t_specifier spec, va_list ap);
 void				print_specifier_c(t_specifier spec, va_list ap);
 void				print_specifier_p(t_specifier spec, va_list ap);
+void				print_specifier_W(t_specifier spec, va_list ap);
+void				print_specifier_w(t_specifier spec, va_list ap);
 
 #endif
