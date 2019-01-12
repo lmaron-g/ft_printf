@@ -71,7 +71,7 @@ int			find_precision(char *src, va_list ap)
 	return (0);
 }
 
-int			ft_is_contains(const char *src, const char *sub)
+static int	ft_is_contains(const char *src, const char *sub)
 {
 	size_t	n;
 

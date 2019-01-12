@@ -44,10 +44,7 @@ void				ft_put_unicode_str(wchar_t *src)
 	if (src)
 	{
 		while (src[i] != '\0')
-		{
-			ft_put_unicode(src[i]);
-			i++;
-		}
+			ft_put_unicode(src[i++]);
 		ft_unicode_strdel(&src);
 	}
 }

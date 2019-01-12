@@ -72,7 +72,6 @@ void				ft_put_unicode(wchar_t c);
 void				ft_put_unicode_str(wchar_t *src);
 int					ft_unicode_simblen(wchar_t c);
 int					ft_unicode_strlen(wchar_t *src);
-int					ft_is_contains(const char *src, const char *sub);
 int					ft_consist(const char *str, const char *sub);
 void 				alignment_optput(t_specifier spec, char *src);
 void				print_chars(t_specifier spec, va_list ap);
