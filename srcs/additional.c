@@ -33,8 +33,7 @@ char				*round_it(char *src)
 	return (src);
 }
 
-
-void 				alignment_optput(t_specifier spec, char *src)
+void				alignment_optput(t_specifier spec, char *src)
 {
 	int				len;
 

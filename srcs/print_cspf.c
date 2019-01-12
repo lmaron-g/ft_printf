@@ -32,7 +32,6 @@ void				print_specifier_f(t_specifier spec, long double nbr)
 				add_zero(&src, spec);
 	}
 	alignment_optput(spec, src);
-
 }
 
 void				print_specifier_p(t_specifier spec, va_list ap)

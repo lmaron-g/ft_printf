@@ -73,7 +73,7 @@ void				ft_put_unicode_str(wchar_t *src);
 int					ft_unicode_simblen(wchar_t c);
 int					ft_unicode_strlen(wchar_t *src);
 int					ft_consist(const char *str, const char *sub);
-void 				alignment_optput(t_specifier spec, char *src);
+void				alignment_optput(t_specifier spec, char *src);
 void				print_chars(t_specifier spec, va_list ap);
 void				print_strings(t_specifier spec, va_list ap);
 long double			use_lenght_for_f(t_specifier spec, va_list ap);

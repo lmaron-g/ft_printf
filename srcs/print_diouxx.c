@@ -83,7 +83,7 @@ void				print_specifier_x(t_specifier spec, unsigned long long nbr)
 void				print_specifier_b(t_specifier spec, unsigned long long nbr)
 {
 	char			*src;
-	
+
 	if (!nbr && spec.precision == -1)
 		src = ft_strnew(0);
 	else

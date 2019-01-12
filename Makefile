@@ -18,17 +18,17 @@ OBJ_D = objs
 
 GCCFLAGS = -Wall -Wextra -Werror
 
-SRCS =  print_unicode.c\
-		print_unicode_cs.c\
-		util_is.c  \
+SRCS =  util_is.c  \
 		util_find.c	\
 		ft_printf.c  \
-		additional.c   \
-		print_cspf.c    \
-		print_diouxx.c   \
-		spec_lenghts.c    \
+		additional.c  \
+		print_cspf.c   \
+		print_diouxx.c  \
+		spec_lenghts.c   \
+		print_unicode.c   \
 		main_utilities.c   \
-		util_translation.c  \
+		print_unicode_cs.c  \
+		util_translation.c   \
 
 LIBFT = ft_itoa.c \
 		ft_atoi.c  \
