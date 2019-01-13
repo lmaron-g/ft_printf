@@ -1,4 +1,4 @@
-# printf
+# Ft_Printf
 
 It's myself version of `stdio` printf 
 
