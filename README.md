@@ -1,6 +1,6 @@
 # Ft_Printf
 
-It's myself version of `stdio` printf 
+It's my version of `stdio` printf 
 
 supported specifires: `%idDoOuUxXcCsSpfFbwW`
 
