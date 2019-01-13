@@ -1,4 +1,6 @@
-# ft_printf
+# printf
+
+It's myself version of `stdio` printf 
 
 supported specifires: `%idDoOuUxXcCsSpfFbwW`
 
