@@ -52,7 +52,7 @@ OBJSL = $(addprefix $(OBJ_D)/,$(LIBFT:.c=.o))
 all: $(NAME)
 
 $(NAME):
-		@gcc $(GCCFLAGS) -g -c $(SRC_D) $(LIBFT_D) -I ./includes -I ./libft/includes
+		@gcc $(GCCFLAGS) -c $(SRC_D) $(LIBFT_D) -I ./includes -I ./libft/includes
 		@mkdir -p $(OBJ_D) && mv $(SRCS:.c=.o) ./$(OBJ_D) && mv $(LIBFT:.c=.o) ./$(OBJ_D)
 		@ar rc $(NAME) $(OBJS) $(OBJSL)
 		@ranlib $(NAME)
